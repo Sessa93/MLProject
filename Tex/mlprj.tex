@@ -4,7 +4,7 @@
 \usepackage{graphicx}
 
 \title{SDSS Celestial Objects Classification}
-\author{Andrea Sessa Mat.850082}
+\author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
 
 \begin{document}
 
@@ -46,9 +46,9 @@
   more than 1000 features.\newline
   Features in general includes information about the flux associated with a specific wavelenght.
   \begin{figure}[!ht]
-    \caption{Typical emission spectrum for a galaxy}
+    \caption{Typical emission spectrum for an emission galaxy}
     \centering
-    \includegraphics[scale=0.55]{emission_galaxy.jpg}
+    \includegraphics[scale=0.5]{emission_galaxy.jpg}
   \end{figure}
   
   The problem of feautures selection become very important in this scenario; this project will try to cast
@@ -58,9 +58,54 @@
 
 \section{Problem Formulation}
 
-\subsection{Dataset}
-  Write something about the dataset, number of samples, number of features, labels, in source 
+  \subsection{Dataset Description}
+    The dataset that has been used for this project is a reduced version of the SDSS spectroscopic dataset:
+    it consiste of 4000 spectroscopic samples, each of this sample formed by 1000 features that describes 
+    the spectrum over the different wavelength.\newline
+    Objects in the dataset belong to 10 different categories:
+    \begin{enumerate}
+      \item \textbf{UNKNOW}: Unknown celestial objects
+      \item \textbf{STAR}: Generic stellar objects
+      \item \textbf{ABSORTION GALAXY}: Galaxies that show relatively homogeneous spectra, dominated by absorption features from cool giant stars
+      \item \textbf{GALAXY}: Generic galaxy(neither absortion nor emission)
+      \item \textbf{EMISSION GALAXY}: Galaxies whose spectrum is dominated by emission features
+      \item \textbf{NARROW-LINE QSO}: Narrow emission quasars
+      \item \textbf{BROAD-LINE QSO}: Broad emission quasars
+      \item \textbf{SKY}: No better specified
+      \item \textbf{HI-Z QSO}: Quasars with an high red-shift coefficient 
+      \item \textbf{LATE-TYPE STAR}: Cooled starts(type K or type M)
+    \end{enumerate}
+  
+  \subsection{Preprocessing}
+    This project do not use the original SDSS dataset(which contained more than 4000 features per sample!).\newline
+    The samples present in the original dataset had two main problems:
+    \begin{itemize}
+     \item Each individual spectra present a different redshift factor(z). This phenomena is due to the fact that 
+	the object that was being observed, was moving during while emitting light, this cause the frequency of light
+	to `shift` toward lower energy wavelenght ie. toward `red` wavelenght.
+     
+     \item Missing data: There are several reasons for gaps to exist: The removal of skylines,
+	bad pixels on the CCD chips all leave gaps at different frame wavelengths for each spectrum, general tecnical problem, etc. 
+	All these factor can contribute to incomplete spectra.\newline
+	To overcome this problem a Principal Component Anaysis(henceforth referred as PCA) is used to reproject the data
+	on their principal dimension and then used to fill the missing gap. The entire procedure is described in detail in \cite{redshift}
+    \end{itemize}
+    In addition to the two above stated procedure the dataset has been furtherly downsample till to reduce the number of significant features
+    to 1000(which is still quite high!).\newline
+    Finally, given the fact that the spectra belong to very different celestial object at very different distance(light years order) from 
+    the observation point, a final step of normalization is applied that is Z-Score and mean centering(making them suitable for a subsequent PCA analysis).
+  
+  \subsection{Visualization}
+    In figure 2 are shown some random spectra for different type of objected extracted from the dataset:
+    
+    \begin{figure}[!ht]
+      \caption{Sample spectrum for different objects}
+      \centering
+      \includegraphics[scale=0.6]{sample_spec.jpg}
+    \end{figure}
+    
 
+\newpage
 
 \section{Methodology}
 
@@ -75,7 +120,13 @@
     
    \bibitem{sdss}
     Wikipedia,
-    \emph{The Sloan Digital Sky Survey}  
+    \emph{The Sloan Digital Sky Survey}
+    
+   \bibitem{redshift}
+    C.W. Yip et al,
+    \emph{Spectral Classification of Quasars in the Sloan Digital Sky Survey: Eigenspectra, Redshift, and Luminosity Effects},
+    Astronomical Journal,
+    2004
 \end{thebibliography}
 
 
