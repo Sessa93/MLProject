@@ -2,21 +2,31 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{mathtools}
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
+\date{}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-  Given the high dimensionality of the data provided by the Spectra instrumentation; main goal of the project
-  is to provide a classfication of the celestial object observed by Spectra focusing on the data visualization 
-  and features selection phase.\newline
-  Various different feautures selection tecnique are evaluated(Principal Component Anaysis(PCA), Kernel PCA, forward features selection,
-  backward features selection). The different approaches are compared over a `state-of-the-art` classifier(Support Vector Machine)\newline
-  Final results shows that (TODO)
+  The project aims to study the problem of dimensionality reduction in the field of astronomy.
+  The high number of features involved often makes the job of classifying celestial objects, 
+  basing entirely on their spectra, very difficult. The problem of preprocessing high dimensional 
+  astronomical data is considered. We refer to the method described in \cite{redshift} to 
+  overcome the problem of missing data and the different redshift factor of different object.
+  The resulting dataset(which is the starting point for the project) contains information of
+  4000 celestial object(such as galaxies, quasars, stars, etc.) each of the samples consists
+  of 1000 attributes which describe the electromagnetic radiation over different wavelength(3000 to 8000 angstrom).
+  We propose different methodologies to approach the problem of features reduction:
+  PCA, Kernel PCA(different kernel are considered) and forward/backward features selection;
+  The goodness of each method is evaluated over Support Vector Machine(soft margin penalty is tuned by 5-Fold cross-validation)
+  considering as metrics accuracy, precision, recall and F1 score.
+  Final results shows, in general, how a very small number of features in the can actually capture an high percentage(90 \%)
+  of the variance associated with the data.
 \end{abstract}
 
 \newpage
@@ -31,36 +41,55 @@
 
 \section{Introduction}
   Modern astronomy is concerned with the study of very distant celestial objects ie quasars, galaxies, stars, etc.\newline
-  Often this type of classfication is performed by analyzing the spectrum emitted by such objects.\newline
-  In general the emission spectrum of a chemical element or of a chemical compound is defined as the eletromagnetic radiation emitted
+  Often this type of classification is performed by analyzing the spectrum emitted by such objects.\newline
+  In general the emission spectrum of a chemical element or of a chemical compound is defined as the electromagnetic radiation emitted
   when an atom or a molecule, of the object that we are observing, perform a transition from an high energy states to a low energy state.
-  During the decadiment the atom or molecule the elettromagnetic is iradiated under the form of photon, the associated photon energy
+  During the decadiment the atom or molecule the electromagnetic is irradiated under the form of photon, the associated photon energy
   (also called flux) is proportional is equal to the energy difference between the two energy states involved in the decadiment.\newline
   The important element is that for a given atom there are many possible electron transition, and each of these transition has a specific
   flux associated.\newline
   The Sloan Digital Sky Survey(henceforth referred as SDSS) is a major imaging and spectroscopic survey using a dedicated 2.5-m wide-angle
   optical telescope at Apache Point Observatory in New Mexico, United States.\newline
-  The collection of data started in 2000 and continues up to nowdays(latest data realease in June 2013). The dataset comprises almost
-  2 millions of spectra coming from diffrent objects.\newline
+  The collection of data started in 2000 and continues up to nowadays(latest data release in June 2013). The dataset comprises almost
+  2 millions of spectra coming from different objects.\newline
   Machine learning plays an important role in the task of classifying these objects, given the fact that many times samples include
   more than 1000 features.\newline
-  Features in general includes information about the flux associated with a specific wavelenght.
+  Features in general includes information about the flux associated with a specific wavelength.
+  
   \begin{figure}[!ht]
     \caption{Typical emission spectrum for an emission galaxy}
     \centering
     \includegraphics[scale=0.5]{emission_galaxy.jpg}
   \end{figure}
   
-  The problem of feautures selection become very important in this scenario; this project will try to cast
-  some light on the problem by evaluating different approaches over a reducted version of the SDSS dataset.
+  If the input feature vectors have very high dimension, the learning problem can be difficult even if the true function only depends on a small number of those features.
+  This is because the many "extra" dimensions can confuse the learning algorithm and cause it to have high variance.
+  Hence the problem of features selection become very important in this scenario; this project will try to cast
+  some light on the problem by evaluating different approaches over a reduced version of the SDSS dataset.
   
+\section{Problem Formulation}
+  The overall problem can be divided into to main section:\newline
+  The first one is the issue of features selection, what follows is a possible formal formulation of the problem:\newline
+  We start from a number of features $ M = 1000 $, the objective is to find $M' \ll M$ such that 
+  the selected $M'$ features gives the smallest expected generalization error, in mathematical terms:\newline\newline
+  
+  \textit{Given a set of functions $y = f(x,\alpha)$ we want to find a preprocessing over the data, $\textbf{x} \mapsto (\textbf{x} * \sigma)$}
+  \begin{equation}
+    \tau(\sigma, \alpha) = \int \mathrm V(y,f((x*\sigma),\alpha) \,\mathrm{d}p(\textbf{x},y)
+  \end{equation}
+  \textit{subject to $||\sigma||_0$}
+  
+  The problem considered is a classical of supervised learning: multi-class classification. As described in section 4.1, 
+  each sample in the dataset belong to one of ten different classes 
+
 \newpage
 
-\section{Problem Formulation}
+\section{Methodology}
 
+\section{Experiments}
   \subsection{Dataset Description}
     The dataset that has been used for this project is a reduced version of the SDSS spectroscopic dataset:
-    it consiste of 4000 spectroscopic samples, each of this sample formed by 1000 features that describes 
+    it consisted of 4000 spectroscopic samples, each of this sample formed by 1000 features that describes 
     the spectrum over the different wavelength.\newline
     Objects in the dataset belong to 10 different categories:
     \begin{enumerate}
@@ -76,7 +105,7 @@
       \item \textbf{LATE-TYPE STAR}: Cooled starts(type K or type M)
     \end{enumerate}
   
-  \subsection{Preprocessing}
+  \subsubsection{Preprocessing}
     This project do not use the original SDSS dataset(which contained more than 4000 features per sample!).\newline
     The samples present in the original dataset had two main problems:
     \begin{itemize}
@@ -95,13 +124,14 @@
     Finally, given the fact that the spectra belong to very different celestial object at very different distance(light years order) from 
     the observation point, a final step of normalization is applied that is Z-Score and mean centering(making them suitable for a subsequent PCA analysis).
   
-  \subsection{Visualization}
-
-\newpage
-
-\section{Methodology}
-
-\section{Experiments}
+  \subsubsection{Visualization}
+    In figure 2 are shown some random spectra for different type of objected extracted from the dataset:
+    
+    \begin{figure}[!ht]
+      \caption{Sample spectrum for different objects}
+      \centering
+      \includegraphics[scale=0.6]{sample_spec.jpg}
+    \end{figure}
 
 \section{Conclusions}
 

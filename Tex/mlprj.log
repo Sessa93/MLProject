@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  23 JUN 2016 21:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  24 JUN 2016 12:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -369,35 +369,126 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count88
+\calc@Bcount=\count89
+\calc@Adimen=\dimen105
+\calc@Bdimen=\dimen106
+\calc@Askip=\skip43
+\calc@Bskip=\skip44
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count90
+\calc@Cskip=\skip45
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/10 v2.15b AMS math features
+\@mathmargin=\skip46
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen107
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen108
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen109
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks18
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks19
+\eqnshift@=\dimen110
+\alignsep@=\dimen111
+\tagshift@=\dimen112
+\tagwidth@=\dimen113
+\totwidth@=\dimen114
+\lineht@=\dimen115
+\@envbody=\toks20
+\multlinegap=\skip47
+\multlinetaggap=\skip48
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count103
+\l_MT_multwidth_dim=\dimen116
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen117
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen118
+\l_MT_above_intertext_sep=\dimen119
+\l_MT_below_intertext_sep=\dimen120
+\l_MT_above_shortintertext_sep=\dimen121
+\l_MT_below_shortintertext_sep=\dimen122
+)
 (./mlprj.aux)
 \openout1 = `mlprj.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count88
-\scratchdimen=\dimen105
-\scratchbox=\box26
-\nofMPsegments=\count89
-\nofMParguments=\count90
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count91
-\MPscratchDim=\dimen106
-\MPnumerator=\count92
-\makeMPintoPDFobject=\count93
-\everyMPtoPDFconversion=\toks18
+\scratchcounter=\count104
+\scratchdimen=\dimen123
+\scratchbox=\box28
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen124
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks23
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -446,27 +537,10 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 11.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 11.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 11.
-
-Overfull \hbox (1.16394pt too wide) in paragraph at lines 14--20
-\OT1/cmr/m/n/9 Various dif-fer-ent feau-tures se-lec-tion tec-nique are eval-u-
-ated(Principal Com-
- []
-
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./mlprj.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 3.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 3.
-)
+(./mlprj.toc)
 \tf@toc=\write3
 \openout3 = `mlprj.toc'.
 
@@ -478,47 +552,68 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <emission_galaxy.jpg, id=19, 562.1pt x 421.575pt>
 File: emission_galaxy.jpg Graphic file (type jpg)
  <use emission_galaxy.jpg>
-Package pdftex.def Info: emission_galaxy.jpg used on input line 51.
+Package pdftex.def Info: emission_galaxy.jpg used on input line 62.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
 
 [4 <./emission_galaxy.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 83.
+Underfull \hbox (badness 10000) in paragraph at lines 71--75
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--75
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
+
+ []
+
+[5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 113.
+
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
- [5]
-<sample_spec.jpg, id=27, 572.1375pt x 451.6875pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 113.
+ [6]
+<sample_spec.jpg, id=37, 572.1375pt x 451.6875pt>
 File: sample_spec.jpg Graphic file (type jpg)
  <use sample_spec.jpg>
-Package pdftex.def Info: sample_spec.jpg used on input line 104.
+Package pdftex.def Info: sample_spec.jpg used on input line 134.
 (pdftex.def)             Requested size: 343.28514pt x 271.01459pt.
 
-[6 <./sample_spec.jpg>] [7] (./mlprj.aux) ) 
+[7 <./sample_spec.jpg>] (./mlprj.aux) ) 
 Here is how much of TeX's memory you used:
- 1831 strings out of 493027
- 24514 string characters out of 6134075
- 86142 words of memory out of 5000000
- 5354 multiletter control sequences out of 15000+600000
- 8848 words of font info for 31 fonts, out of 8000000 for 9000
+ 2992 strings out of 493027
+ 41076 string characters out of 6134075
+ 108374 words of memory out of 5000000
+ 6482 multiletter control sequences out of 15000+600000
+ 12370 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,23p,231b,252s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmti10.pfb>
-Output written on mlprj.pdf (7 pages, 178871 bytes).
+ 38i,7n,23p,239b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti10.pfb>
+Output written on mlprj.pdf (7 pages, 229502 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 90 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
