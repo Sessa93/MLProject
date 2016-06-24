@@ -8,7 +8,16 @@ load spectraInputs.mat
 load spectraOutputs.mat
 load spectraWavelenght.mat
 t = t';
+
+[N,M] = size(s);
+
+%Normalization
 norm = zscore(s);
+
+%Shuffling
+indx = randperm(N);
+t = t(indx);
+s = s(indx,:);
 
 labels = {'unknown', 'star', 'absorption galaxy', 'galaxy', 'emission galaxy', 'narrow-line QSO', 'broad-line QSO', 'sky', 'Hi-z QSO', 'Late-type star'};
 
@@ -25,6 +34,22 @@ for ii=[0,2,4,6]
 end
 xlabel('Wavelength(angstrom)')
 ylabel('Flux')
+
+%% Prepare the dataset
+perc_train = 0.8;
+perc_test = 1 - perc_train;
+
+n_train = N*perc_train;
+n_test = N*perc_test;
+
+%Divide in train/test
+train_x = s(1:n_train,:);
+test_x = s(n_train+1:n_test+n_train,:);
+train_t = t(1:n_train);
+test_t = t(n_train+1:n_test+n_train);
+
+%% Baseline - No FS
+train_svm(train_x,train_t)
 
 %% PCA Analysis
 
