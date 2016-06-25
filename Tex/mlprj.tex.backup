@@ -68,19 +68,40 @@
   some light on the problem by evaluating different approaches over a reduced version of the SDSS dataset.
   
 \section{Problem Formulation}
-  The overall problem can be divided into to main section:\newline
+  The overall problem is divided into three main sections:
+  \subsubsection{Features Extraction}
   The first one is the issue of features selection, what follows is a possible formal formulation of the problem:\newline
-  We start from a number of features $ M = 1000 $, the objective is to find $M' \ll M$ such that 
-  the selected $M'$ features gives the smallest expected generalization error, in mathematical terms:\newline\newline
+  The goal is, starting from a number of features $ M = 1000 $, find $M' \ll M$ such that 
+  the selected $M'$ features gives the smallest expected generalization error. In more formal terms:\newline\newline
   
   \textit{Given a set of functions $y = f(x,\alpha)$ we want to find a preprocessing over the data, $\textbf{x} \mapsto (\textbf{x} * \sigma)$}
   \begin{equation}
     \tau(\sigma, \alpha) = \int \mathrm V(y,f((x*\sigma),\alpha) \,\mathrm{d}p(\textbf{x},y)
   \end{equation}
-  \textit{subject to $||\sigma||_0$}
-  
-  The problem considered is a classical of supervised learning: multi-class classification. As described in section 4.1, 
-  each sample in the dataset belong to one of ten different classes 
+  \textit{subject to $||\sigma||_0 = M'$,  where $p(x,y)$ is unknown, $x * \sigma = (x_1 \sigma_1, ... , x_M \sigma_M)$ denotes an
+  element wise product, $V (.,.)$ is a generic loss function} \newline
+  The literature divided the feautures selected methods into two main group
+  \begin{itemize}
+   \item \textbf{Filter methods} rely on general characteristics of the data to evaluate and to select the feature subsets without
+	 involving the chosen learning algorithm. Scores are assigned to each features according to some metrics.\newline
+	 A widely-used filter method is to apply a classical univariate ANOVA F-Test. The procedure
+	 calculates the following F-statistics for each feature:\newline\newline
+	 \textit{Y = generic label(0 to 9) \newline $N_j$ = number of samples with Y = j \newline $\bar{x}_j$ = the sample mean for features X for target class j
+		 \newline $s_{j}^2 = \sum_{i=1}^{N_j} (x_{ij} - \bar{x}_j) / (N_j -1)$ 
+		 \newline $\bar{x} = \sum_{j=1}^{J} N_j\bar{x}_j / N$ }\newline
+	 \begin{equation}
+	  F = \frac{\sum_{j=1}^{J} N_j(\bar{x}_j - \bar{x})^2 / (J - 1)}{\sum_{j=1}^{J} (N_j - 1)s_{j}^2 / N_j -1} \sim F(J-1, N-J)
+	 \end{equation}
+	 If the null hypothesis is accepted then the feature X is statistically significant for the classification.\newline 
+	 From the statistics we can assign a p-value to each features and rank them(ascending order); if the p-value is smaller
+	 than the significant level than the test accept the null hypothesis.\newline
+
+   \item \textbf{Wrapper methods} evaluate subsets of features which allows, unlike filter approaches, to detect the possible
+	 interactions between features.\newline
+	 Sequential feature selection is one of the most widely used techniques. It selects a subset of features by sequentially adding 
+	 (forward search) or removing (backward search) until certain stopping conditions are satisfied.
+  \end{itemize}
+
 
 \newpage
 

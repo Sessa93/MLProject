@@ -70,7 +70,7 @@ print "Num samples: ",N
 
 mu = data['mu']
 
-sio.savemat('spectraInputs.mat',dict(x=range(N),s=spectra,t=Y))
+sio.savemat('spectraInputs.mat',dict(x=range(N),s=spectra,mu=mu))
 sio.savemat('spectraOutputs.mat',dict(x=range(N),t=Y))
 sio.savemat('spectraWavelenght.mat', dict(x=range(M),w=lam))
 
