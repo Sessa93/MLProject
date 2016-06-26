@@ -100,7 +100,39 @@
 	 interactions between features.\newline
 	 Sequential feature selection is one of the most widely used techniques. It selects a subset of features by sequentially adding 
 	 (forward search) or removing (backward search) until certain stopping conditions are satisfied.
+	 For this project we will consider a forward search, the algorithm stops when a local minima is obeserved in the metric used
+	 to evaluate the goodness of the subset.
   \end{itemize}
+  
+  \subsubsection{Dimensionality Reduction}
+    The objective of dimensionality reduction differs from the idea behind features selection, while the latter tries to select
+    the best subset, a dimensionality reduction algorithm applies a transformation over the existing features re-projecting the 
+    data over a dimensionality reduced dataset.\newline
+    In more formal terms, we are trying to find a orthogonal transformation matrix $W$ such that:
+    \begin{equation}
+     \overline{X} = W^T X
+    \end{equation}
+    $\overline{X}$ is new dimensionality rappresentation of the data.
+  
+  \subsubsection{Classification - Multi-class SVM}
+     Support Vector Machines (henceforth referred as SVM) are supervised learning models with associated learning algorithms
+     that analyze data used for classification (and regression).\newline
+     We focus our attention first on the case of binary classification and the we extend it to the general case of multi-class classification.\newline
+     In a two-class SVM the prediction for a new point is given by:
+     \begin{equation}
+      f(x_q) = sign \left( \sum_{m \in M} \alpha_m t_m k(x_q, x_m) + b \right ) 
+     \end{equation}
+     The objective of a SVM is to maximize the margin that is the distance of the closest point to the separating hyperplane.
+     The problem maximize the margin leads to the following constrained optimization problem:
+     \begin{equation}
+      \begin{aligned}
+	& \underset{x}{\text{min}}
+	& & \frac{1}{2} ||w||_2 + C \sum_{i} \csi_i  \\
+	& \text{subject to}
+	& & f_i(x) \leq b_i, \; i = 1, \ldots, m.
+      \end{aligned}
+     \end{equation}
+
 
 
 \newpage
@@ -112,17 +144,14 @@
     The dataset that has been used for this project is a reduced version of the SDSS spectroscopic dataset:
     it consisted of 4000 spectroscopic samples, each of this sample formed by 1000 features that describes 
     the spectrum over the different wavelength.\newline
-    Objects in the dataset belong to 10 different categories:
+    Objects in the dataset belong to 7 different categories:
     \begin{enumerate}
-      \item \textbf{UNKNOW}: Unknown celestial objects
       \item \textbf{STAR}: Generic stellar objects
-      \item \textbf{ABSORTION GALAXY}: Galaxies that show relatively homogeneous spectra, dominated by absorption features from cool giant stars
+      \item \textbf{ABSORPTION GALAXY}: Galaxies that show relatively homogeneous spectra, dominated by absorption features from cool giant stars
       \item \textbf{GALAXY}: Generic galaxy(neither absortion nor emission)
       \item \textbf{EMISSION GALAXY}: Galaxies whose spectrum is dominated by emission features
       \item \textbf{NARROW-LINE QSO}: Narrow emission quasars
       \item \textbf{BROAD-LINE QSO}: Broad emission quasars
-      \item \textbf{SKY}: No better specified
-      \item \textbf{HI-Z QSO}: Quasars with an high red-shift coefficient 
       \item \textbf{LATE-TYPE STAR}: Cooled starts(type K or type M)
     \end{enumerate}
   
@@ -132,15 +161,15 @@
     \begin{itemize}
      \item Each individual spectra present a different redshift factor(z). This phenomena is due to the fact that 
 	the object that was being observed, was moving during while emitting light, this cause the frequency of light
-	to `shift` toward lower energy wavelenght ie. toward `red` wavelenght.
+	to `shift` toward lower energy wavelength ie. toward `red`.
      
      \item Missing data: There are several reasons for gaps to exist: The removal of skylines,
-	bad pixels on the CCD chips all leave gaps at different frame wavelengths for each spectrum, general tecnical problem, etc. 
+	bad pixels on the CCD chips all leave gaps at different frame wavelengths for each spectrum, general technical problem, etc. 
 	All these factor can contribute to incomplete spectra.\newline
-	To overcome this problem a Principal Component Anaysis(henceforth referred as PCA) is used to reproject the data
+	To overcome this problem a Principal Component Analysis(henceforth referred as PCA) is used to reproject the data
 	on their principal dimension and then used to fill the missing gap. The entire procedure is described in detail in \cite{redshift}
     \end{itemize}
-    In addition to the two above stated procedure the dataset has been furtherly downsample till to reduce the number of significant features
+    In addition to the two above stated procedure the dataset has been further downsampled till to reduce the number of significant features
     to 1000(which is still quite high!).\newline
     Finally, given the fact that the spectra belong to very different celestial object at very different distance(light years order) from 
     the observation point, a final step of normalization is applied that is Z-Score and mean centering(making them suitable for a subsequent PCA analysis).

@@ -77,13 +77,15 @@ pca_acc = sum(predicted_label == test_t)/n_test;
 
 %% Fw features selections
 
-xt = train_x(1:1500,:);
-tt = train_t(1:1500);
+%Reduce the dataset
+xt = train_x(1:2000,:);
+tt = train_t(1:2000);
 
+%5-Fold cross validation
 c = cvpartition(double(tt),'k',5);
 opts = statset('display','iter');
 
-[fs,history] = sequentialfs(@svmwrapper,double(xt),double(tt),'cv',c,'options',opts)
+[fs,history] = sequentialfs(@svmwrapper,double(xt),double(tt),'cv',c,'options',opts,'nfeatures',20)
 
 
 

@@ -1,6 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{4}
 \contentsline {section}{\numberline {2}Problem Formulation}{5}
 \contentsline {subsubsection}{\numberline {2.0.1}Features Extraction}{5}
+\contentsline {subsubsection}{\numberline {2.0.2}Dimensionality Reduction}{6}
+\contentsline {subsubsection}{\numberline {2.0.3}Classification - Multi-class SVM}{6}
 \contentsline {section}{\numberline {3}Methodology}{7}
 \contentsline {section}{\numberline {4}Experiments}{7}
 \contentsline {subsection}{\numberline {4.1}Dataset Description}{7}
