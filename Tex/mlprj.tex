@@ -148,7 +148,15 @@
   Details and experimentation results are given is section 4.
   
   \subsection{Baseline Classifier}
-    
+    The baseline is represented by a standard 7-class SVM classifier, all the dataset is used, no features selection/dimensionality
+    reduction algorithm is applied. The SVM uses a gaussian kernel defined has:
+    \begin{equation}
+     k(x,y) = exp \left( \frac{-||x-y||^2}{2 \gamma} \right)
+    \end{equation}
+    The hyperparameter $\gamma$(the `spread` of the gaussian curve) and $C$ (the penalty for miss-classified point) are chosen by 5-fold
+    cross validation iterating over a grid of possible value.
+  
+  \subsection{ANOVA F-Test}
     
 
 \section{Experiments}

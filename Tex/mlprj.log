@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  28 JUN 2016 11:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  28 JUN 2016 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,7 +587,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--98
  []
 
 [5] [6]
-Overfull \hbox (0.84143pt too wide) in paragraph at lines 162--163
+Overfull \hbox (0.84143pt too wide) in paragraph at lines 170--171
 []\OT1/cmr/bx/n/10 ABSORPTION GALAXY\OT1/cmr/m/n/10 : Galax-ies that show rel-a
 -tively ho-mo-ge-neous
  []
@@ -595,10 +595,10 @@ Overfull \hbox (0.84143pt too wide) in paragraph at lines 162--163
 [7] <sample_spec.jpg, id=42, 572.1375pt x 451.6875pt>
 File: sample_spec.jpg Graphic file (type jpg)
  <use sample_spec.jpg>
-Package pdftex.def Info: sample_spec.jpg used on input line 195.
+Package pdftex.def Info: sample_spec.jpg used on input line 203.
 (pdftex.def)             Requested size: 343.28514pt x 271.01459pt.
 
-[8 <./sample_spec.jpg>] [9] (./mlprj.aux) ) 
+[8] [9 <./sample_spec.jpg>] (./mlprj.aux) ) 
 Here is how much of TeX's memory you used:
  2993 strings out of 493027
  41086 string characters out of 6134075
@@ -624,7 +624,7 @@ lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
 sfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmti10.pfb>
-Output written on mlprj.pdf (9 pages, 255887 bytes).
+Output written on mlprj.pdf (9 pages, 258392 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  70 compressed objects within 1 object stream

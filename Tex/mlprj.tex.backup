@@ -139,11 +139,17 @@
      \begin{equation}
       \textrm{N of comparisons} = \frac{K(K-1)}{2}
      \end{equation}
-     A comparison with others possible approach \cite{multisvm}, ie \textit{1 versus the rest}, shows that \textit{1 versus 1}
+     A comparison with others possible approach \cite{multisvm}, eg \textit{1 versus the rest}, shows that \textit{1 versus 1}
      in general has good performance(very short training time) but in some cases it can lead to situations in which samples are
-     ambiguosly classfied.
+     ambiguously classified.
 
 \section{Methodology}
+  In this section is included a list(and a brief description) of the approaches that will be considered during the experimentation campaign.\newline
+  Details and experimentation results are given is section 4.
+  
+  \subsection{Baseline Classifier}
+    
+    
 
 \section{Experiments}
   \subsection{Dataset Description}
@@ -154,7 +160,7 @@
     \begin{enumerate}
       \item \textbf{STAR}: Generic stellar objects
       \item \textbf{ABSORPTION GALAXY}: Galaxies that show relatively homogeneous spectra, dominated by absorption features from cool giant stars
-      \item \textbf{GALAXY}: Generic galaxy(neither absortion nor emission)
+      \item \textbf{GALAXY}: Generic galaxy(neither absorption nor emission)
       \item \textbf{EMISSION GALAXY}: Galaxies whose spectrum is dominated by emission features
       \item \textbf{NARROW-LINE QSO}: Narrow emission quasars
       \item \textbf{BROAD-LINE QSO}: Broad emission quasars
