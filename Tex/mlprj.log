@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  26 JUN 2016 11:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.19)  28 JUN 2016 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,23 +587,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--98
  []
 
 [5] [6]
-Overfull \hbox (0.84143pt too wide) in paragraph at lines 150--151
+Overfull \hbox (0.84143pt too wide) in paragraph at lines 162--163
 []\OT1/cmr/bx/n/10 ABSORPTION GALAXY\OT1/cmr/m/n/10 : Galax-ies that show rel-a
 -tively ho-mo-ge-neous
  []
 
-<sample_spec.jpg, id=38, 572.1375pt x 451.6875pt>
+[7] <sample_spec.jpg, id=42, 572.1375pt x 451.6875pt>
 File: sample_spec.jpg Graphic file (type jpg)
  <use sample_spec.jpg>
-Package pdftex.def Info: sample_spec.jpg used on input line 183.
+Package pdftex.def Info: sample_spec.jpg used on input line 195.
 (pdftex.def)             Requested size: 343.28514pt x 271.01459pt.
 
-[7] [8 <./sample_spec.jpg>] (./mlprj.aux) ) 
+[8 <./sample_spec.jpg>] [9] (./mlprj.aux) ) 
 Here is how much of TeX's memory you used:
- 2992 strings out of 493027
- 41076 string characters out of 6134075
- 109374 words of memory out of 5000000
- 6482 multiletter control sequences out of 15000+600000
+ 2993 strings out of 493027
+ 41086 string characters out of 6134075
+ 109377 words of memory out of 5000000
+ 6483 multiletter control sequences out of 15000+600000
  12370 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,12n,23p,239b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -624,10 +624,10 @@ lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
 sfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmti10.pfb>
-Output written on mlprj.pdf (8 pages, 252097 bytes).
+Output written on mlprj.pdf (9 pages, 255887 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 100 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

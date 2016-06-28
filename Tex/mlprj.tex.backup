@@ -127,15 +127,21 @@
      \begin{equation}
       \begin{aligned}
 	& \underset{x}{\text{min}}
-	& & \frac{1}{2} ||w||_2 + C \sum_{i} \csi_i  \\
+	& & \frac{1}{2} ||w||_2^2 + C \sum_{i} \xi_i  \\
 	& \text{subject to}
-	& & f_i(x) \leq b_i, \; i = 1, \ldots, m.
+	& & t_i(w^T x_i + b) \geq 1 - \xi_i \; \forall i
       \end{aligned}
      \end{equation}
-
-
-
-\newpage
+     The previous equation permits to assign to each sample a weight($\alpha$) that determine the so-called support vector.\newline
+     However in our case the problem must be formulated in terms of a generic number of classes($K=7$ classes).\newline
+     Different approaches to the problem, for this project we follow a \textit{1 versus 1} approach: for each pairs of classes
+     we solve a binary SVM classification problem as described above. The number of pair to be considered is given by
+     \begin{equation}
+      \textrm{N of comparisons} = \frac{K(K-1)}{2}
+     \end{equation}
+     A comparison with others possible approach \cite{multisvm}, ie \textit{1 versus the rest}, shows that \textit{1 versus 1}
+     in general has good performance(very short training time) but in some cases it can lead to situations in which samples are
+     ambiguosly classfied.
 
 \section{Methodology}
 
@@ -199,6 +205,11 @@
     \emph{Spectral Classification of Quasars in the Sloan Digital Sky Survey: Eigenspectra, Redshift, and Luminosity Effects},
     Astronomical Journal,
     2004
+    
+    \bibitem{multisvm}
+     Chih-Wei Hsu, Chih-Jen Lin
+     \emph{A Comparison of Methods for Multi-class Support Vector Machines},
+     IEEE Transactions on Neural Networks, 13(2002), 415-425
 \end{thebibliography}
 
 
