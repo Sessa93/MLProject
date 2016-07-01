@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{mathtools}
+\usepackage{float}
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -22,7 +23,7 @@
   4000 celestial object(such as galaxies, quasars, stars, etc.) each of the samples consists
   of 1000 attributes which describe the electromagnetic radiation over different wavelength(3000 to 8000 angstrom).
   We propose different methodologies to approach the problem of features reduction:
-  PCA, Kernel PCA(different kernel are considered) and forward/backward features selection;
+  PCA, Randomized PCA(different kernel are considered), forward features selection and ANOVA F-Test approach;
   The goodness of each method is evaluated over Support Vector Machine(soft margin penalty is tuned by 5-Fold cross-validation)
   considering as metrics accuracy, precision, recall and F1 score.
   Final results shows, in general, how a very small number of features in the can actually capture an high percentage(90 \%)
@@ -56,7 +57,7 @@
   more than 1000 features.\newline
   Features in general includes information about the flux associated with a specific wavelength.
   
-  \begin{figure}[!ht]
+  \begin{figure}[H]
     \caption{Typical emission spectrum for an emission galaxy}
     \centering
     \includegraphics[scale=0.5]{emission_galaxy.jpg}
@@ -148,7 +149,15 @@
   Details and experimentation results are given is section 4.
   
   \subsection{Baseline Classifier}
-    
+    The baseline is represented by a standard 7-class SVM classifier, all the dataset is used, no features selection/dimensionality
+    reduction algorithm is applied. The SVM uses a gaussian kernel defined has:
+    \begin{equation}
+     k(x,y) = exp \left( \frac{-||x-y||^2}{2 \gamma} \right)
+    \end{equation}
+    The hyperparameter $\gamma$(the `spread` of the gaussian curve) and $C$ (the penalty for miss-classified point) are chosen by 5-fold
+    cross validation iterating over a grid of possible value.
+  
+  \subsection{ANOVA F-Test}
     
 
 \section{Experiments}
@@ -189,11 +198,49 @@
   \subsubsection{Visualization}
     In figure 2 are shown some random spectra for different type of objected extracted from the dataset:
     
-    \begin{figure}[!ht]
+    \begin{figure}[H]
       \caption{Sample spectrum for different objects}
       \centering
       \includegraphics[scale=0.6]{sample_spec.jpg}
     \end{figure}
+    
+    We can observe the different characteristics of the spectra associated with each object:\newline
+    Broad-line quasars have marked and large peak of emission in the emission, emission galaxies distinguish themself, from other type
+    of galaxies, thanks to the presence of very narrow and high peak of emission(in general higher than narrow-line QSO); absorption 
+    galaxies present a series of `caves` in their spectra where some component of the light is absorbed by particular chemical compounds present in 
+    the objects of the galaxy; on the other hand `standard` galaxies present a spectra that rapresent a trdeoff between the previous cases.\newline\newline
+    
+    We also include a histogram showing the number of objects per class:
+    \begin{figure}[H]
+      \caption{Objects per class}
+      \centering
+      \includegraphics[scale=0.4]{histogram.jpg}
+    \end{figure}
+  
+  \subsection{Metrics}
+    The results of the different alternatives evaluated over the test set are compared according the confusion matrix.\newline
+    The confusion matrix is $K x K$ matrix (in our case $K = 7$), the generic element $e_ij$ indicates how many samples 
+    that comes from class $i$ have been predicted to class $j$.\newline
+    The following metric can be evaluated:
+    \begin{equation*}
+     Accuracy = \frac{\sum_{i = 1}^K e_{ii}}{N} 
+    \end{equation*}
+    For each class $k$ we also consider:
+    \begin{equation*}
+     Precision_k = \frac{tp_k}{fp_k + tp_k} 
+    \end{equation*}
+    \begin{equation*}
+     Recall_k = \frac{tp_k}{tp_k + fn_k} 
+    \end{equation*}
+    Where $tp_k$ is the number of true positive for class $k$, ie the number of samples that belong to class $k$ and has been
+    correctly predicted to class $k$, and $fp_k$ is the number of false positive, ie the number of samples that does not belong
+    to class $k$ but have been predicted to class $k$.\newline
+    The precision express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus
+    the number of point that has been uncorrectly predicted belonging to class $k$.\newline
+    The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
+    the number of point that has been uncorrectly predicted not belonging to class $k$.
+    
+\newpage
 
 \section{Conclusions}
 
@@ -212,10 +259,10 @@
     Astronomical Journal,
     2004
     
-    \bibitem{multisvm}
-     Chih-Wei Hsu, Chih-Jen Lin
-     \emph{A Comparison of Methods for Multi-class Support Vector Machines},
-     IEEE Transactions on Neural Networks, 13(2002), 415-425
+   \bibitem{multisvm}
+    Chih-Wei Hsu, Chih-Jen Lin
+    \emph{A Comparison of Methods for Multi-class Support Vector Machines},
+    IEEE Transactions on Neural Networks, 13(2002), 415-425
 \end{thebibliography}
 
 

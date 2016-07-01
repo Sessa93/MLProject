@@ -1,4 +1,9 @@
-% Prepare the workspace
+%Author: Andrea Sessa
+%Email: andrea.sessa@mail.polimi.it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%This script performs all the experiment described in report.pdf
+
+%% Prepare the workspace
 clear all;
 close all;
 clc;
@@ -24,20 +29,6 @@ t(t == 9) = 7;
 t(t == 0) = 3;
 
 labels = { 'unknown','star', 'absorption galaxy', 'galaxy', 'emission galaxy', 'narrow-line QSO', 'broad-line QSO', 'sky', 'Hi-z QSO', 'Late-type star'};
-
-%% Plot sample spectrum
-figure()
-
-for ii=[2,3,4,6]
-    e = find(t == ii,1);
-
-    plot(w',s(e,:)+20*ii)
-    hold on
-    text(6600,20*ii+30,labels(:,ii+1))
-    hold on
-end
-xlabel('Wavelength(angstrom)')
-ylabel('Flux')
 
 %% Prepare the dataset
 perc_train = 0.7;
