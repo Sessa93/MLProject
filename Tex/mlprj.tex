@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{float}
+\usepackage{algorithm2e}
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -70,7 +71,7 @@
   
 \section{Problem Formulation}
   The overall problem is divided into three main sections:
-  \subsubsection{Features Extraction}
+  \subsection{Features Extraction}
   The first one is the issue of features selection, what follows is a possible formal formulation of the problem:\newline
   The goal is, starting from a number of features $ M = 1000 $, find $M' \ll M$ such that 
   the selected $M'$ features gives the smallest expected generalization error. In more formal terms:\newline\newline
@@ -85,17 +86,7 @@
   \begin{itemize}
    \item \textbf{Filter methods} rely on general characteristics of the data to evaluate and to select the feature subsets without
 	 involving the chosen learning algorithm. Scores are assigned to each features according to some metrics.\newline
-	 A widely-used filter method is to apply a classical univariate ANOVA F-Test. The procedure
-	 calculates the following F-statistics for each feature:\newline\newline
-	 \textit{Y = generic label(0 to 9) \newline $N_j$ = number of samples with Y = j \newline $\bar{x}_j$ = the sample mean for features X for target class j
-		 \newline $s_{j}^2 = \sum_{i=1}^{N_j} (x_{ij} - \bar{x}_j) / (N_j -1)$ 
-		 \newline $\bar{x} = \sum_{j=1}^{J} N_j\bar{x}_j / N$ }\newline
-	 \begin{equation}
-	  F = \frac{\sum_{j=1}^{J} N_j(\bar{x}_j - \bar{x})^2 / (J - 1)}{\sum_{j=1}^{J} (N_j - 1)s_{j}^2 / N_j -1} \sim F(J-1, N-J)
-	 \end{equation}
-	 If the null hypothesis is accepted then the feature X is statistically significant for the classification.\newline 
-	 From the statistics we can assign a p-value to each features and rank them(ascending order); if the p-value is smaller
-	 than the significant level than the test accept the null hypothesis.\newline
+	 A widely-used filter method is to apply a classical univariate ANOVA F-Test. 
 
    \item \textbf{Wrapper methods} evaluate subsets of features which allows, unlike filter approaches, to detect the possible
 	 interactions between features.\newline
@@ -105,7 +96,7 @@
 	 to evaluate the goodness of the subset.
   \end{itemize}
   
-  \subsubsection{Dimensionality Reduction}
+  \subsection{Dimensionality Reduction}
     The objective of dimensionality reduction differs from the idea behind features selection, while the latter tries to select
     the best subset, a dimensionality reduction algorithm applies a transformation over the existing features re-projecting the 
     data over a dimensionality reduced dataset.\newline
@@ -115,7 +106,7 @@
     \end{equation}
     $\overline{X}$ is new dimensionality rappresentation of the data.
   
-  \subsubsection{Classification - Multi-class SVM}
+  \subsection{Classification - Multi-class SVM}
      Support Vector Machines (henceforth referred as SVM) are supervised learning models with associated learning algorithms
      that analyze data used for classification (and regression).\newline
      We focus our attention first on the case of binary classification and the we extend it to the general case of multi-class classification.\newline
@@ -156,10 +147,46 @@
     \end{equation}
     The hyperparameter $\gamma$(the `spread` of the gaussian curve) and $C$ (the penalty for miss-classified point) are chosen by 5-fold
     cross validation iterating over a grid of possible value.
-  
+    
   \subsection{ANOVA F-Test}
+    The procedure calculates the following F-statistics for each feature:\newline\newline
+    \textit{Y = generic label(0 to 9) \newline $N_j$ = number of samples with Y = j \newline $\bar{x}_j$ = the sample mean for features X for target
+    class j \newline
+    $s_{j}^2 = \sum_{i=1}^{N_j} (x_{ij} - \bar{x}_j) / (N_j -1)$ \newline
+    $\bar{x} = \sum_{j=1}^{J} N_j\bar{x}_j / N$ }\newline
+    \begin{equation}
+      F = \frac{\sum_{j=1}^{J} N_j(\bar{x}_j - \bar{x})^2 / (J - 1)}{\sum_{j=1}^{J} (N_j - 1)s_{j}^2 / N_j -1} \sim F(J-1, N-J)
+    \end{equation}
+    From the statistics we can assign a p-value to each features and rank them(ascending order); if the p-value is smaller
+    than the significant level($\alpha$) then the feature is considered significant(at level $\alpha$).\newline
+    After the procedure has individuated the significant subset of feature we proceed by cross-validating the model(always a SVM with gaussian kernel)
+    to determine the optimal value of C and $\gamma$\newline
+    The final model is then evaluated over the test set.
     
   \subsection{Forward Features Selection}
+    The idea is to find the best subset of features starting from an empty set and iteratively adding features
+    until a stopping conditions is met.\newline
+    The following algorithm shows the procedure that has been implemented in Matlab:\newline\newline
+    \begin{algorithm}[H]
+      \KwData{The train dataset,D}
+      F = ()\;
+      metricOld = 0\;
+      metric = 0\;
+      \Begin{
+	metricOld = metric\;
+	\Repeat{$abs(metricOld - metric) < 0.001$}{
+	  x = D.sampleFeature()\;
+	  F.append(x)\;
+	  meric = 5FoldCrossValidate(D,F)\;
+	}
+      }
+      \caption{FFS algorithm}
+    \end{algorithm}
+    
+    \noindent \textit{metric} in this case is evaluated as the number of missclassified points over the number of samples in the training dataset.
+    5-Fold cross-validation is used to obtain an unbiased estimation of the metric for the model.\newline
+    Once the procedure terminates we use the selected features to cross-validate a SVM(gaussian kernel). 
+    The final model is then evaluated over the test set.
   
   \subsection{PCA}
   
@@ -251,6 +278,11 @@
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
     
+  \subsection{Notes on LibSVM}
+    Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
+    to train a 7-class SVM. LibSVM sources file has been modfied \cite{openmpsvm} in order to permit kernel evaluations in training/testing
+    to be parallelized on 6 threads; this small modifications has lead to a significant improvement in the compuatation performance.\newline
+    \textbf{TODO: Insert example with numbers!}
 \newpage
 
 \section{Conclusions}
@@ -273,9 +305,19 @@
     2004
     
    \bibitem{multisvm}
-    Chih-Wei Hsu, Chih-Jen Lin
+    Chih-Wei Hsu, Chih-Jen Lin,
     \emph{A Comparison of Methods for Multi-class Support Vector Machines},
     IEEE Transactions on Neural Networks, 13(2002), 415-425
+    
+   \bibitem{libsvm}
+    Chih-Wei Hsu, Chih-Jen Lin,
+    \emph{LibSVM: A Library for Support Vector Machines},
+    https://www.csie.ntu.edu.tw/~cjlin/libsvm/
+    
+   \bibitem{openmpsvm}
+    Chih-Wei Hsu, Chih-Jen Lin,
+    \emph{Use OpenMP to parallelize LibSVM on a multicore/shared-memory computer},
+    http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html\#f432
 \end{thebibliography}
 
 

@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{float}
+\usepackage{algorithm2e}
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -85,17 +86,7 @@
   \begin{itemize}
    \item \textbf{Filter methods} rely on general characteristics of the data to evaluate and to select the feature subsets without
 	 involving the chosen learning algorithm. Scores are assigned to each features according to some metrics.\newline
-	 A widely-used filter method is to apply a classical univariate ANOVA F-Test. The procedure
-	 calculates the following F-statistics for each feature:\newline\newline
-	 \textit{Y = generic label(0 to 9) \newline $N_j$ = number of samples with Y = j \newline $\bar{x}_j$ = the sample mean for features X for target class j
-		 \newline $s_{j}^2 = \sum_{i=1}^{N_j} (x_{ij} - \bar{x}_j) / (N_j -1)$ 
-		 \newline $\bar{x} = \sum_{j=1}^{J} N_j\bar{x}_j / N$ }\newline
-	 \begin{equation}
-	  F = \frac{\sum_{j=1}^{J} N_j(\bar{x}_j - \bar{x})^2 / (J - 1)}{\sum_{j=1}^{J} (N_j - 1)s_{j}^2 / N_j -1} \sim F(J-1, N-J)
-	 \end{equation}
-	 If the null hypothesis is accepted then the feature X is statistically significant for the classification.\newline 
-	 From the statistics we can assign a p-value to each features and rank them(ascending order); if the p-value is smaller
-	 than the significant level than the test accept the null hypothesis.\newline
+	 A widely-used filter method is to apply a classical univariate ANOVA F-Test. 
 
    \item \textbf{Wrapper methods} evaluate subsets of features which allows, unlike filter approaches, to detect the possible
 	 interactions between features.\newline
@@ -156,10 +147,50 @@
     \end{equation}
     The hyperparameter $\gamma$(the `spread` of the gaussian curve) and $C$ (the penalty for miss-classified point) are chosen by 5-fold
     cross validation iterating over a grid of possible value.
-  
-  \subsection{ANOVA F-Test}
     
-
+  \subsection{ANOVA F-Test}
+    The procedure calculates the following F-statistics for each feature:\newline\newline
+    \textit{Y = generic label(0 to 9) \newline $N_j$ = number of samples with Y = j \newline $\bar{x}_j$ = the sample mean for features X for target
+    class j \newline
+    $s_{j}^2 = \sum_{i=1}^{N_j} (x_{ij} - \bar{x}_j) / (N_j -1)$ \newline
+    $\bar{x} = \sum_{j=1}^{J} N_j\bar{x}_j / N$ }\newline
+    \begin{equation}
+      F = \frac{\sum_{j=1}^{J} N_j(\bar{x}_j - \bar{x})^2 / (J - 1)}{\sum_{j=1}^{J} (N_j - 1)s_{j}^2 / N_j -1} \sim F(J-1, N-J)
+    \end{equation}
+    From the statistics we can assign a p-value to each features and rank them(ascending order); if the p-value is smaller
+    than the significant level($\alpha$) then the feature is considered significant(at level $\alpha$).\newline
+    After the procedure has individuated the significant subset of feature we proceed by cross-validating the model(always a SVM with gaussian kernel)
+    to determine the optimal value of C and $\gamma$\newline
+    The final model is then evaluated over the test set.
+    
+  \subsection{Forward Features Selection}
+    The idea is to find the best subset of features starting from an empty set and iteratively adding features
+    until a stopping conditions is met.\newline
+    The following algorithm shows the procedure that has been implemented in Matlab:\newline\newline
+    \begin{algorithm}[H]
+      \KwData{The train dataset,D}
+      F = ()\;
+      metricOld = 0\;
+      metric = 0\;
+      \Begin{
+	metricOld = metric\;
+	\Repeat{$abs(metricOld - metric) < 0.001$}{
+	  x = D.sampleFeature()\;
+	  F.append(x)\;
+	  meric = 5FoldCrossValidate(D,F)\;
+	}
+      }
+      \caption{FFS algorithm}
+    \end{algorithm}
+    
+    \noindent \textit{metric} in this case is evaluated as the number of missclassified points over the number of samples in the training dataset.\newline
+    Once the procedure terminates we use the selected features to cross-validate a SVM(gaussian kernel). 
+    The final model is then evaluated over the test set.
+  
+  \subsection{PCA}
+  
+  \subsection{Randomized PCA}
+  
 \section{Experiments}
   \subsection{Dataset Description}
     The dataset that has been used for this project is a reduced version of the SDSS spectroscopic dataset:
@@ -216,6 +247,12 @@
       \centering
       \includegraphics[scale=0.4]{histogram.jpg}
     \end{figure}
+    The histogram shows a very irregular distribution of the objects in the class, this is due to two main reasons:
+    \begin{enumerate}
+     \item Some objects are more difficult to observe with respect to others, quasars are more rare to observe(and to discover) with respect to galaxies
+     \item The dataset in consideration has a limited amount of samples(~4000), this is mainly due to the limited computational power available to the author. 
+    \end{enumerate}
+
   
   \subsection{Metrics}
     The results of the different alternatives evaluated over the test set are compared according the confusion matrix.\newline
@@ -240,9 +277,12 @@
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
     
+  \subsection{Notes on LibSVM}
 \newpage
 
 \section{Conclusions}
+
+\newpage
 
 \begin{thebibliography}{9}
   \bibitem{spectrum}
