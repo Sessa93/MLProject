@@ -277,6 +277,18 @@
     the number of point that has been uncorrectly predicted belonging to class $k$.\newline
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
+  \subsection{Results}
+    \subsubsection{Baseline Classifier}
+      The first problem in SVM classification is the choice of the correct kernel:\newline
+      Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
+      \begin{itemize}
+       \item Linear Kernel, Accuracy on the test set: ~ 67\%
+       \item Polynomial Kernel(third degree), Accuracy on the test set: ~ 69\% 
+       \item Gaussian Kernel, Accuracy on the test set;
+      \end{itemize}
+      The optimal hyper-parameter are chosen by 5-fold cross-validation.\newline
+      The the accuracy over the test 
+
     
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order

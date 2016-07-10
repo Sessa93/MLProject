@@ -71,7 +71,7 @@
   
 \section{Problem Formulation}
   The overall problem is divided into three main sections:
-  \subsubsection{Features Extraction}
+  \subsection{Features Extraction}
   The first one is the issue of features selection, what follows is a possible formal formulation of the problem:\newline
   The goal is, starting from a number of features $ M = 1000 $, find $M' \ll M$ such that 
   the selected $M'$ features gives the smallest expected generalization error. In more formal terms:\newline\newline
@@ -96,7 +96,7 @@
 	 to evaluate the goodness of the subset.
   \end{itemize}
   
-  \subsubsection{Dimensionality Reduction}
+  \subsection{Dimensionality Reduction}
     The objective of dimensionality reduction differs from the idea behind features selection, while the latter tries to select
     the best subset, a dimensionality reduction algorithm applies a transformation over the existing features re-projecting the 
     data over a dimensionality reduced dataset.\newline
@@ -106,7 +106,7 @@
     \end{equation}
     $\overline{X}$ is new dimensionality rappresentation of the data.
   
-  \subsubsection{Classification - Multi-class SVM}
+  \subsection{Classification - Multi-class SVM}
      Support Vector Machines (henceforth referred as SVM) are supervised learning models with associated learning algorithms
      that analyze data used for classification (and regression).\newline
      We focus our attention first on the case of binary classification and the we extend it to the general case of multi-class classification.\newline
@@ -183,7 +183,8 @@
       \caption{FFS algorithm}
     \end{algorithm}
     
-    \noindent \textit{metric} in this case is evaluated as the number of missclassified points over the number of samples in the training dataset.\newline
+    \noindent \textit{metric} in this case is evaluated as the number of missclassified points over the number of samples in the training dataset.
+    5-Fold cross-validation is used to obtain an unbiased estimation of the metric for the model.\newline
     Once the procedure terminates we use the selected features to cross-validate a SVM(gaussian kernel). 
     The final model is then evaluated over the test set.
   
@@ -276,8 +277,23 @@
     the number of point that has been uncorrectly predicted belonging to class $k$.\newline
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
+  \subsection{Results}
+    \subsubsection{Baseline Classifier}
+      The first problem in SVM classification is the choice of the correct kernel:\newline
+      Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
+      \begin{itemize}
+       \item Linear Kernel, Accuracy on the test set: ~ 67\%
+       \item Polynomial Kernel(third degree), Accuracy on the test set: ~ 69\% 
+       \item Gaussian Kernel, Accuracy on the test set;
+      \end{itemize}
+      The optimal hyper-parameter are chosen by 5-fold cross-validation.\newline
+
     
   \subsection{Notes on LibSVM}
+    Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
+    to train a 7-class SVM. LibSVM sources file has been modfied \cite{openmpsvm} in order to permit kernel evaluations in training/testing
+    to be parallelized on 6 threads; this small modifications has lead to a significant improvement in the compuatation performance.\newline
+    \textbf{TODO: Insert example with numbers!}
 \newpage
 
 \section{Conclusions}
@@ -300,9 +316,19 @@
     2004
     
    \bibitem{multisvm}
-    Chih-Wei Hsu, Chih-Jen Lin
+    Chih-Wei Hsu, Chih-Jen Lin,
     \emph{A Comparison of Methods for Multi-class Support Vector Machines},
     IEEE Transactions on Neural Networks, 13(2002), 415-425
+    
+   \bibitem{libsvm}
+    Chih-Wei Hsu, Chih-Jen Lin,
+    \emph{LibSVM: A Library for Support Vector Machines},
+    https://www.csie.ntu.edu.tw/~cjlin/libsvm/
+    
+   \bibitem{openmpsvm}
+    Chih-Wei Hsu, Chih-Jen Lin,
+    \emph{Use OpenMP to parallelize LibSVM on a multicore/shared-memory computer},
+    http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html\#f432
 \end{thebibliography}
 
 

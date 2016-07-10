@@ -31,11 +31,12 @@ t(t == 0) = 3;
 labels = { 'unknown','star', 'absorption galaxy', 'galaxy', 'emission galaxy', 'narrow-line QSO', 'broad-line QSO', 'sky', 'Hi-z QSO', 'Late-type star'};
 
 %% Prepare the dataset
-perc_train = 0.7;
+perc_train = 0.8;
 perc_test = 1 - perc_train;
 
 n_train = N*perc_train;
 n_test = N*perc_test;
+norm = s;
 
 %Divide in train/test
 train_x = norm(1:n_train,:);
@@ -45,7 +46,7 @@ test_t = t(n_train+1:n_test+n_train);
 
 %% Baseline - No FS
 [best_c, best_gamma, cv_acc] = train_svm(double(train_x),double(train_t));
-baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t -c %f -g %f -q', best_c, best_gamma));
+baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %f -q', best_c, best_gamma));
 [predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline, '-q');
 baseline_acc = sum(predicted_label == test_t)/n_test;
 
@@ -62,7 +63,7 @@ pc2 = scores(:,2);
 data = double([pc1 pc2]);
 
 [best_c, best_gamma, cv_acc] = train_svm(data,double(train_t));
-pca_model = libsvmtrain(double([pc1 pc2]),double(train_t), sprintf('-t -c %f -g %f -q', best_c, best_gamma));
+pca_model = libsvmtrain(double([pc1 pc2]),double(train_t), sprintf('-t 2 -c %f -g %f -q', best_c, best_gamma));
 [predicted_label] = libsvmpredict(double(test_t), double(test_x), pca_model, '-q');
 pca_acc = sum(predicted_label == test_t)/n_test;
 
