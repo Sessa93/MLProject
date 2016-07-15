@@ -5,6 +5,7 @@
 \usepackage{mathtools}
 \usepackage{float}
 \usepackage{algorithm2e}
+\usepackage{textcomp}
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -24,11 +25,12 @@
   4000 celestial object(such as galaxies, quasars, stars, etc.) each of the samples consists
   of 1000 attributes which describe the electromagnetic radiation over different wavelength(3000 to 8000 angstrom).
   We propose different methodologies to approach the problem of features reduction:
-  PCA, Randomized PCA(different kernel are considered), forward features selection and ANOVA F-Test approach;
+  PCA, ISOMAP, forward features selection and ANOVA F-Test approach;
   The goodness of each method is evaluated over Support Vector Machine(soft margin penalty is tuned by 5-Fold cross-validation)
   considering as metrics accuracy, precision, recall and F1 score.
   Final results shows, in general, how a very small number of features in the can actually capture an high percentage(90 \%)
-  of the variance associated with the data.
+  of the variance associated with the data and to results identical or better with respect to the case and high number
+  of features is used. Moreover final results also show how PCA and ISOMAP are quite ineffective on this particular dataset.
 \end{abstract}
 
 \newpage
@@ -174,7 +176,7 @@
       metric = 0\;
       \Begin{
 	metricOld = metric\;
-	\Repeat{$abs(metricOld - metric) < 0.001$}{
+	\Repeat{$abs(metricOld - metric) < 0.001 or 100 features have been selected$}{
 	  x = D.sampleFeature()\;
 	  F.append(x)\;
 	  meric = 5FoldCrossValidate(D,F)\;
@@ -189,8 +191,44 @@
     The final model is then evaluated over the test set.
   
   \subsection{PCA}
-  
-  \subsection{Randomized PCA}
+    The standard PCA algorithm requires that the input data are centered around the axes-origin, so we need to subtract the mean to the data such that 
+    they are mean centered.\newline
+    PCA proceeds by calculating the convariance matrix S defined as:
+    \begin{equation}
+     S = \frac{1}{N} (x - \bar{x})(x - \bar{x})^T
+    \end{equation}
+    Now we calculates eigenvectors and eigenvalues of S; each eigenvector represents a `principal direction`, the associated eigenvalues has a 
+    value that is proportional to the amount of variance along that particular direction. The idea is to select the first n principal eigenvector 
+    such that the 95 \% of the variance is retained.
+
+  \subsection{ISOMAP}
+    ISOMAP is a non-linear dimensionality reduction method. One of the main flaw of PCA is that the detected principal components are linear
+    and cannot capture the variance along non-linear direction.\newline
+    The algorithm provides a simple method for estimating the intrinsic geometry of a data manifold based on a rough estimate of each data point’s neighbors on the manifold. 
+    Isomap is highly efficient and generally applicable to a broad range of data sources and dimensionalities.\newline
+    The algorithm can be seen has an extension of and MDS(Multi-Dimensional Scaling) algorithm.\newline
+    Follows an high level description of ISOMAP:\newline\newline
+    \begin{algorithm}[H]
+      \KwData{The train dataset,D}
+      
+      \Begin{
+	\ForAll{p in D}{
+	  p.KNN = CalculateKNN()
+	}
+	//Build a the KNN graph \\
+	$D_X = D\{d_x(i,j)\}$ \\
+	//$d_x(i,j)$ is the euclidean distance between point i and j \\
+	//Compute the shortest path(Dijkstra) between each pair of points \\
+	$D_G = D\{d_g(i,j)\}$ \\
+	return MDS($D_G$)\\
+      }
+      \caption{High-level ISOMAP}
+    \end{algorithm}
+    \vspace{2mm}
+    \noindent The idea behind MDS can be synthetixe as follows:\newline
+    \textbf{Input:} $n x n$ matrix of symilarities(shortest path in ISOMAP) between n objects\newline
+    \textbf{Output:} A configuration in a low-dimensional Euclidean space $R^k$ whose interpoint distances $d(x_i,x_j)$ closely match the symilarities.
+    
   
 \section{Experiments}
   \subsection{Dataset Description}
@@ -282,12 +320,14 @@
       The first problem in SVM classification is the choice of the correct kernel:\newline
       Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
       \begin{itemize}
-       \item Linear Kernel, Accuracy on the test set: ~ 67\%
-       \item Polynomial Kernel(third degree), Accuracy on the test set: ~ 69\% 
-       \item Gaussian Kernel, Accuracy on the test set;
+       \item Linear Kernel, Accuracy on the test set: $\sim$ 67\%
+       \item Polynomial Kernel(3\textdegree \hspace{.1mm} polynom), Accuracy on the test set: $\sim$ 69\% 
+       \item Gaussian Kernel, Accuracy on the test set: $\sim$ 33.5\%
       \end{itemize}
       The optimal hyper-parameter are chosen by 5-fold cross-validation.\newline
-      The the accuracy over the test 
+      This rough evaluation of these type of kernel shows how a gaussian kernel performs very bad over the test set mainly due to overfitting.\newline
+      We decide to use a polynomial based kernel, follows a detailed analysis to find the best order for the polynom.\newline
+      We evaluate different choice from 2 to 10:\newline
 
     
   \subsection{Notes on LibSVM}

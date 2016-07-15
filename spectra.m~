@@ -45,16 +45,18 @@ train_t = t(1:n_train);
 test_t = t(n_train+1:n_test+n_train);
 
 %% Baseline - No FS
-[best_c, best_gamma cv_acc] = train_svm(double(train_x),double(train_t));
-baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %f -q', best_c, best_gamma));
+[best_c, best_gamma, cv_acc] = train_svm(double(train_x),double(train_t));
+baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t 1 -c %f -g %f -q', best_c, best_gamma));
 [predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline, '-q');
 baseline_acc = sum(predicted_label == test_t)/n_test;
 
-%% Determine the correct polynomial degree
-[best_c, best_gamma, best_d, cv_acc] = train_svm_poly(double(train_x),double(train_t));
-baseline_poly = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %f -d %f -q', best_c, best_gamma, best_d));
-[predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline_poly, '-q');
-baseline_acc_poly = sum(predicted_label == test_t)/n_test;
+%Determine the correct polynomial degree
+for dd=2:10
+    [best_c, best_gamma, cv_acc] = train_svm(double(train_x),double(train_t), dd);
+    baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %f -q', best_c, best_gamma));
+    [predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline, '-q');
+    baseline_acc = sum(predicted_label == test_t)/n_test;
+end 
 
 %% PCA Analysis
 

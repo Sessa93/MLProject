@@ -1,7 +1,7 @@
 function [best_gamma,best_C,cv_acc] = train_svm(data,target)
     %# grid of parameters
     folds = 5;
-    [C,gamma] = meshgrid(-5:3:20, -20:3:-4);
+    [C,gamma] = meshgrid(-5:5:20, -20:5:-4);
     
     %# grid search, and cross-validation
     cv_acc = zeros(numel(C),1);
