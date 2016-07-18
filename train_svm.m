@@ -1,13 +1,13 @@
 function [best_gamma,best_C,cv_acc] = train_svm(data,target)
     %# grid of parameters
     folds = 5;
-    [C,gamma] = meshgrid(-5:5:20, -20:5:-4);
+    [C,gamma] = meshgrid(-5:5:20, -30:5:-15);
     
     %# grid search, and cross-validation
     cv_acc = zeros(numel(C),1);
     for i=1:numel(C)
         curr = [C(i),gamma(i)]
-        cv_acc(i) = libsvmtrain(target, data, sprintf('-t 2 -c %f -g %f -v %d -q', 2^C(i), 2^gamma(i), folds));
+        cv_acc(i) = libsvmtrain(target, data, sprintf('-t 1 -c %f -g %f -v %d -d 3 -q', 2^C(i), 2^gamma(i), folds));
     end
 
     %# pair (C,gamma) with best accuracy

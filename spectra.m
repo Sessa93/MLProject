@@ -51,10 +51,19 @@ baseline = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %
 baseline_acc = sum(predicted_label == test_t)/n_test;
 
 %% Determine the correct polynomial degree
-[best_c, best_gamma, best_d, cv_acc] = train_svm_poly(double(train_x),double(train_t));
-baseline_poly = libsvmtrain(double(train_t),double(train_x), sprintf('-t 2 -c %f -g %f -d %f -q', best_c, best_gamma, best_d));
+[best_c, best_gamma, best_d, ~] = train_svm_poly(double(train_x),double(train_t));
+baseline_poly = libsvmtrain(double(train_t),double(train_x), sprintf('-t 1 -c %f -g %f -d %f -q', best_c, best_gamma, best_d));
 [predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline_poly, '-q');
 baseline_acc_poly = sum(predicted_label == test_t)/n_test;
+
+%Best Degree: 4
+
+%% Detailed Poly XVal
+[best_c, best_gamma,~] = train_svm(double(train_x),double(train_t));
+baseline_poly = libsvmtrain(double(train_t),double(train_x), sprintf('-t 1 -c %f -g %f -d %f -q', best_c, best_gamma, 3));
+[predicted_label] = libsvmpredict(double(test_t), double(test_x), baseline_poly, '-q');
+baseline_acc_poly = sum(predicted_label == test_t)/n_test;
+[base_p, base_r] = calculate_metrics(predicted_label,double(test_t));
 
 %% PCA Analysis
 
@@ -66,6 +75,7 @@ pc1 = scores(:,1);
 pc2 = scores(:,2);
 data = double([pc1 pc2]);
 
+%% Train PCA-Model
 [best_c, best_gamma, cv_acc] = train_svm(data,double(train_t));
 pca_model = libsvmtrain(double([pc1 pc2]),double(train_t), sprintf('-t 2 -c %f -g %f -q', best_c, best_gamma));
 [predicted_label] = libsvmpredict(double(test_t), double(test_x), pca_model, '-q');
@@ -83,6 +93,7 @@ opts = statset('display','iter');
 
 [fs,history] = sequentialfs(@svmwrapper,double(xt),double(tt),'cv',c,'options',opts,'nfeatures',20)
 
+%% ISOMAP
 
 
 

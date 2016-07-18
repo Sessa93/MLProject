@@ -1,9 +1,9 @@
-function [best_gamma,best_C, best_d, cv_acc] = train_svm(data,target)
+function [best_gamma,best_C, best_d, cv_acc] = train_svm_poly(data,target)
     %# grid of parameters
     folds = 5;
-    [C,gamma] = meshgrid(-5:5:20, -20:5:-4);
+    [C,gamma] = meshgrid(5:5:20, -10:5:-5);
     acc_d = []
-    for dd =2:10
+    for dd =2:5
         %# grid search, and cross-validation
         cv_acc = zeros(numel(C),1);
         for i=1:numel(C)
@@ -23,7 +23,6 @@ function [best_gamma,best_C, best_d, cv_acc] = train_svm(data,target)
         'HorizontalAlign','left', 'VerticalAlign','top')
         hold off
         xlabel('log_2(C)'), ylabel('log_2(\gamma)'), title('Cross-Validation Accuracy')
-        title('X-Val, Degree: ',num2str(dd))
     end
 
     %# now you can train you model using best_C and best_gamma

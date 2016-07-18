@@ -6,6 +6,10 @@
 \usepackage{float}
 \usepackage{algorithm2e}
 \usepackage{textcomp}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -325,14 +329,47 @@
        \item Gaussian Kernel, Accuracy on the test set: $\sim$ 33.5\%
       \end{itemize}
       The optimal hyper-parameter are chosen by 5-fold cross-validation.\newline
+      This rough evaluation of these type of kernel shows how a gaussian kernel performs very bad over the test set mainly due to overfitting.\newline
+      We decide to use a polynomial based kernel, follows a detailed analysis to find the best order for the polynom.\newline
+      The generic polynomial kernel is in the form:
+      \begin{equation}
+       k(x,y) = (\gamma x^Ty)^d
+      \end{equation}
+      We perform a 5-fold cross-validation in order to determine the best $\gamma$, C and degree(d).\newline
+      The procedure has individuated the following hyperparameter:
+      \begin{itemize}
+       \item degree(d) = 3
+       \item $\gamma = 2^{-20} = 0,000000954$
+       \item $C = 2^{15} = 32768$
+      \end{itemize}
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{baseline.jpg}
+	\caption{Baseline Contour plot}
+      \end{figure}
+      With the optimal value of C and $\gamma$ the baseline classifire has been able to achieve on the test set an accuracy of 68.88 \% \newline
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{conf_matrix_baseline.jpg}
+	\caption{Baseline Heatmap}
+      \end{figure}
+      \noindent We also report the recall and precision for each class:\newline
+      
+      \begin{tabular}{lSSSSSSS} \toprule
+	\centering
+	{$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	$Precision$  & 1 & 0.6336 & 0.5410 & 0.8973 & 0.5357 & 1 & 0 \\ \midrule
+	$Recall$  & 0.6250 & 0.5765 & 0.5823 & 0.9042 & 0.6522 & 0.75  & $NaN$  \\ \bottomrule
+      \end{tabular}
+      
       
 
-    
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
     to train a 7-class SVM. LibSVM sources file has been modfied \cite{openmpsvm} in order to permit kernel evaluations in training/testing
     to be parallelized on 6 threads; this small modifications has lead to a significant improvement in the compuatation performance.\newline
     \textbf{TODO: Insert example with numbers!}
+    
 \newpage
 
 \section{Conclusions}
@@ -369,6 +406,5 @@
     \emph{Use OpenMP to parallelize LibSVM on a multicore/shared-memory computer},
     http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html\#f432
 \end{thebibliography}
-
 
 \end{document}
