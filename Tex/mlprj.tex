@@ -367,6 +367,18 @@
       \end{table}
     
     \subsubsection{ANOVA Classifier}
+      This section describes the first attempt to improve the performance of the baseline classifier by trying to reduce the number of
+      features by calculating an univariate f-test over the features.\newline
+      To have a rough idea on which may be the most informative features we plot the f-score(the results of the previous analysis) for each 
+      feature: the higher the lower the p-value, a low p-value means a statistically significant feature.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{anova_f_score.png}
+	\caption{ANOVA F-Score}
+      \end{figure}
+      
+      \noindent The graph clearly shows how the first 160 $\sim$ 180 features have a higher inoformative level with respect to the others.\newline
+      
 
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order

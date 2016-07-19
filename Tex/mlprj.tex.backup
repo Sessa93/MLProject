@@ -10,6 +10,8 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
 
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
@@ -355,14 +357,27 @@
       \end{figure}
       \noindent We also report the recall and precision for each class:\newline
       
-      \begin{tabular}{lSSSSSSS} \toprule
+      \begin{table}[H]
+      	\centering
+	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
+	  {$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	  $Precision$  & 1 & 0.6336 & 0.5410 & 0.8973 & 0.5357 & 1 & 0 \\ \midrule
+	  $Recall$  & 0.6250 & 0.5765 & 0.5823 & 0.9042 & 0.6522 & 0.75  & $NaN$  \\ \bottomrule
+	\end{tabular}
+      \end{table}
+    
+    \subsubsection{ANOVA Classifier}
+      This section describes the first attempt to improve the performance of the baseline classifier by trying to reduce the number of
+      features by calculating an univariate f-test over the features.\newline
+      To have a rough idea on which may be the most informative features we plot the f-score(the results of the previous analysis) for each 
+      feature: the higher the lower the p-value, a low p-value means a statistically significant feature.
+      \begin{figure}[H]
 	\centering
-	{$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
-	$Precision$  & 1 & 0.6336 & 0.5410 & 0.8973 & 0.5357 & 1 & 0 \\ \midrule
-	$Recall$  & 0.6250 & 0.5765 & 0.5823 & 0.9042 & 0.6522 & 0.75  & $NaN$  \\ \bottomrule
-      \end{tabular}
+	\includegraphics[scale=0.5]{anova_f_score.png}
+	\caption{ANOVA F-Score}
+      \end{figure}
       
-      
+      \noindent The graph clearly shows how 
 
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
