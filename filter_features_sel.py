@@ -9,19 +9,22 @@ from sklearn.feature_selection import f_classif
 from sklearn import svm, datasets, feature_selection, cross_validation
 from sklearn.pipeline import Pipeline
 from sklearn.grid_search import GridSearchCV
+from sklearn.multiclass import OneVsRestClassifier
 
 from sklearn import datasets
 
+
 def main():
     #Load the dataset from Matlab
-    data = sio.loadmat('baseline.mat')
+    data = sio.loadmat('baseline2.mat')
+    n_train = int(data['n_train'])
+    n_test = int(data['n_test'])
     train_x = np.array(data['train_x'])
-    train_t = np.array(data['train_t']).reshape(3200)
+    train_t = np.array(data['train_t']).reshape(n_train)
     test_x = np.array(data['test_x'])
-    test_t = np.array(data['test_t']).reshape(800)
-
+    test_t = np.array(data['test_t']).reshape(796)
     X_indices = np.arange(train_x.shape[-1])
-    print(type(train_t[0]))
+
     #Plotting
     X_f_scores, X_f_pval = f_classif(train_x, train_t.ravel())
     fig, ax = plt.subplots(figsize=(8,6))
@@ -32,42 +35,61 @@ def main():
     #plt.show()
 
     #SVM Fitting
-    #tuned_parameters = [{'degree': ['3'], 'kernel': ['poly'], 'gamma': [1e-3, 1e-4], 'C': [1, 10, 100, 1000]}]
-    C = range(-5,25,5)
-    G = range(-30,5,-5)
-    ###############################################################################
+    C = [-10,0,5]
+    G = [-10,0,10]
+    CF = [-10,0,5,10]
+
     # Plot the cross-validation score as a function of percentile of features
+    percentiles = (1, 10, 15, 20, 30, 40, 100)
     scores = list()
-    percentiles = (1, 3, 6, 10, 15, 20, 30, 40, 60, 80, 100)
-    best_c = 0
-    best_g = 0
-    max_score = -np.inf
+    anovas = list()
+    svcs = list()
 
     for p in percentiles:
+        best_c = 0
+        best_g = 0
+        best_cf = 0
+        best_anova = None
+        max_score = -np.inf
+
         anova = feature_selection.SelectPercentile(f_classif, percentile=p)
         anova.fit(train_x,train_t)
+
         train = anova.transform(train_x)
-        test = anova.transform(test_x)
         for c in C:
             for g in G:
-                #Find best C, gamma
-                svc = svm.SVC(C=2**c, gamma=2**g, degree=3, kernel='poly')
-                this_scores = cross_validation.cross_val_score(svc, train, train_t, n_jobs=4, cv=5, scoring='accuracy')
-                mean_score = sum(this_scores)/len(this_scores)
-                print("C: "+str(c)+" G: "+str(g)+" P: "+str(p)+" A: "+str(mean_score))
-                if mean_score > max_score:
-                    max_score = mean_score
-                    best_c = c
-                    best_g = g
+                for cf in CF:
+                    #Find best C, gamma
+                    svc = svm.SVC(C=2**c, gamma=2**g, coef0=2**cf, degree=3, kernel='poly',max_iter=1000000)
+                    this_scores = cross_validation.cross_val_score(svc, train, train_t, n_jobs=-1, cv=5, scoring='accuracy')
+                    mean_score = sum(this_scores)/len(this_scores)
 
-        best_svm = svm.SVC(C=2**best_c,degree=3, kernel='poly',gamma=2**best_g)
-        acc = cross_validation.cross_val_score(best_svm, test, test_t, n_jobs=1, cv=5,scoring='accuracy')
-        mean_acc = sum(acc)/len(acc)
-        scores.append(mean_acc)
-        print("Acc on T: "+str(mean_acc))
+                    print("C: "+str(c)+" G: "+str(g)+" P: "+str(p)+" A: "+str(mean_score) + " CF: " +str(cf))
+                    if mean_score > max_score:
+                        max_score = mean_score
+                        best_svm = svc
+                        best_anova = anova
+        svcs.append(best_svm)
+        anovas.append(best_anova)
+        scores.append(max_score)
 
+    m_ind =  scores.index(max(scores))
+    best_s = svcs[m_ind]
+    anova = anovas[m_ind]
+
+    print(scores)
+
+    # Test final model
+    test = anova.transform(test_x)
+    train = anova.transform(train_x)
+    best_s.fit(train,train_t)
+    final_score = best_s.score(test,test_t)
+    print(best_s)
+    print("Final Accuracy: "+str(final_score))
+
+    # Plot the result
     fig, ax = plt.subplots(figsize=(8,6))
-    ax.plot(scores)
+    ax.plot(scores, percentiles)
     ax.set_title('Univariate Feature Selection: Classification F-Score')
     ax.set_xlabel('Percentile')
     ax.set_ylabel('Accuracy')
