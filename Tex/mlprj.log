@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.6.29)  19 JUL 2016 09:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.25)  15 AUG 2016 22:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -345,7 +345,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/06/02 v1.0s Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
@@ -355,8 +355,8 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2016/06/17 v0.06h Graphics/color for pdfTeX
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
@@ -389,7 +389,7 @@ LaTeX Info: Redefining \addtolength on input line 81.
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/10 v2.15b AMS math features
+Package: amsmath 2016/06/28 v2.15d AMS math features
 \@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
@@ -1219,28 +1219,56 @@ File: anova_f_score.png Graphic file (type png)
 Package pdftex.def Info: anova_f_score.png used on input line 376.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-[13 <./conf_matrix_baseline.jpg>] [14 <./anova_f_score.png>] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 418--421
+[13 <./conf_matrix_baseline.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
+
+ []
+
+<anova-acc.jpg, id=68, 562.1pt x 421.575pt>
+File: anova-acc.jpg Graphic file (type jpg)
+ <use anova-acc.jpg>
+Package pdftex.def Info: anova-acc.jpg used on input line 384.
+(pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
+
+<anova-heat.jpg, id=69, 552.0625pt x 391.4625pt>
+File: anova-heat.jpg Graphic file (type jpg)
+ <use anova-heat.jpg>
+Package pdftex.def Info: anova-heat.jpg used on input line 390.
+(pdftex.def)             Requested size: 276.03056pt x 195.73076pt.
+ [14 <./anova_f_score.png> <./anova-acc.jpg>]
+<pca-heat.jpg, id=74, 552.0625pt x 391.4625pt>
+File: pca-heat.jpg Graphic file (type jpg)
+ <use pca-heat.jpg>
+Package pdftex.def Info: pca-heat.jpg used on input line 397.
+(pdftex.def)             Requested size: 276.03056pt x 195.73076pt.
+
+<pca-acc.png, id=75, 578.16pt x 433.62pt>
+File: pca-acc.png Graphic file (type png)
+ <use pca-acc.png>
+Package pdftex.def Info: pca-acc.png used on input line 403.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
+ [15 <./anova-heat.jpg> <./pca-heat.jpg>] [16 <./pca-acc.png>] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 445--448
 []\OT1/cmr/m/n/10 Chih-Wei Hsu, Chih-Jen Lin, \OT1/cmr/m/it/10 Use OpenMP to pa
 r-al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--421
+Underfull \hbox (badness 10000) in paragraph at lines 445--448
 \OT1/cmr/m/it/10 lelize Lib-SVM on a multicore/shared-memory com-puter\OT1/cmr/
 m/n/10 ,
  []
 
-[16] (./mlprj.aux) )
+[18] (./mlprj.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14064 strings out of 493013
- 279761 string characters out of 6133328
- 300808 words of memory out of 5000000
- 17455 multiletter control sequences out of 15000+600000
+ 14084 strings out of 493013
+ 280093 string characters out of 6133328
+ 300820 words of memory out of 5000000
+ 17471 multiletter control sequences out of 15000+600000
  18006 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,42p,10356b,7112s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1262,10 +1290,10 @@ local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on mlprj.pdf (16 pages, 397293 bytes).
+Output written on mlprj.pdf (18 pages, 491437 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 144 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

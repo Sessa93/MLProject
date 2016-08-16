@@ -349,7 +349,7 @@
 	\includegraphics[scale=0.5]{baseline.jpg}
 	\caption{Baseline Contour plot}
       \end{figure}
-      With the optimal value of C and $\gamma$ the baseline classifire has been able to achieve on the test set an accuracy of 68.88 \% \newline
+      With the optimal value of C and $\gamma$ the baseline classifier has been able to achieve on the test set an accuracy of 68.88 \% \newline
       \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{conf_matrix_baseline.jpg}
@@ -379,6 +379,30 @@
       
       \noindent The graph clearly shows how the first 160 $\sim$ 180 features have a higher inoformative level with respect to the others.\newline
       
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{anova-acc.jpg}
+	\caption{ANOVA Accuracy-Percentile}
+      \end{figure}
+      
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{anova-heat.jpg}
+	\caption{ANOVA Heatmap}
+      \end{figure}
+      
+     \subsubsection{PCA}
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pca-heat.jpg}
+	\caption{PCA Heatmap}
+      \end{figure}
+      
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pca-acc.png}
+	\caption{PCA Accuracy-Components}
+      \end{figure}
 
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
