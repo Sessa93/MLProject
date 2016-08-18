@@ -83,12 +83,12 @@ def main():
     test = anova.transform(test_x)
     train = anova.transform(train_x)
     best_s.fit(train,train_t)
-    
+
     final_score = best_s.score(test,test_t)
     print(best_s)
     print("Final Accuracy: "+str(final_score))
 
-    pred_t = best_s.predict(test)
+    pred = best_s.predict(test)
     sio.savemat('predicted_anova.mat',dict(x=range(800),pred_t=pred))
 
     # Plot the result

@@ -72,6 +72,10 @@ def main():
     test = pca.transform(test_x)
     train = pca.transform(train_x)
     best_s.fit(train,train_t)
+
+    pred = best_s.predict(test)
+    sio.savemat('predicted_pca.mat',dict(x=range(800),pred_t=pred))
+
     final_score = best_s.score(test,test_t)
     print(best_s)
     print("Final Accuracy: "+str(final_score))

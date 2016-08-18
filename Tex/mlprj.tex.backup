@@ -286,7 +286,7 @@
     galaxies present a series of `caves` in their spectra where some component of the light is absorbed by particular chemical compounds present in 
     the objects of the galaxy; on the other hand `standard` galaxies present a spectra that rapresent a trdeoff between the previous cases.\newline\newline
     
-    We also include a histogram showing the number of objects per class:
+    \noindent We also include a histogram showing the number of objects per class:
     \begin{figure}[H]
       \caption{Objects per class}
       \centering
@@ -349,7 +349,7 @@
 	\includegraphics[scale=0.5]{baseline.jpg}
 	\caption{Baseline Contour plot}
       \end{figure}
-      With the optimal value of C and $\gamma$ the baseline classifire has been able to achieve on the test set an accuracy of 68.88 \% \newline
+      With the optimal value of C and $\gamma$ the baseline classifier has been able to achieve on the test set an accuracy of 68.88 \% \newline
       \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{conf_matrix_baseline.jpg}
@@ -377,7 +377,89 @@
 	\caption{ANOVA F-Score}
       \end{figure}
       
-      \noindent The graph clearly shows how 
+      \noindent The graph clearly shows how the first 160 $\sim$ 180 features have a higher inoformative level with respect to the others.\newline
+      We try different percentiles of features and using 5-fold cross validation we have calculated the accuracy; the results are shown in the following picture.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{anova-acc.jpg}
+	\caption{ANOVA Accuracy-Percentile}
+      \end{figure}
+      \noindent The results clearly shows, as expected, how a smaller number of features($\sim$ 20\%) produce the maximum accuracy. \newline
+      What follows is a more detaled analysis of the results over the test set.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{anova-heat.jpg}
+	\caption{ANOVA Heatmap}
+      \end{figure}
+      The table report precision and recall for each class.
+      \begin{table}[H]
+      	\centering
+	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
+	  {$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	  $Precision$  & 1 & 0.5792 & 0.5677 & 0.8934  & 0.4857 &  0.6667  & 0.5 \\ \midrule
+	  $Recall$  & 0.2 &  0.5565 &  0.5593 & 0.9067 & 0.7727  & 0.5 & 1  \\ \bottomrule
+	\end{tabular}
+      \end{table}
+      
+     \subsubsection{PCA}
+      This section describes the first attempt to improve the performance of the anova/baseline classifier by trying to use a more 
+      sophisticated approach to the problem of dimensionality. 
+      Features are not selected but the data are projected along their principal components.\newline
+      The following picture shows the accuracy versus different number of selected components.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pca-acc.png}
+	\caption{PCA Accuracy-Components}
+      \end{figure}
+      \noindent The figure shows how a very small number of components($\sim$ 50) 
+      can achieve an accuracy better than the baseline and ANOVA classifier.\newline
+      What follows is a more detaled analysis of the results over the test set.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pca-heat.jpg}
+	\caption{PCA Heatmap}
+      \end{figure}
+      The table report precision and recall for each class.
+      \begin{table}[H]
+      	\centering
+	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
+	  {$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	  $Precision$  & 1  &  0.6516 & 0.6842 & 0.9118 & 0.5429 & 0.3333 & 0.5 \\ \midrule
+	  $Recall$  & 0.1667 & 0.6486 & 0.6547 & 0.9288 & 0.7917 & 0.5000 & 1  \\ \bottomrule
+	\end{tabular}
+      \end{table}
+
+     \subsubsection{Forward Features Selection}
+     
+     \subsubsection{ISOMAP}
+      This section describes a second attempt to improve the performance of the PCA classifier by trying to use a more 
+      sophisticated approach to the problem of dimensionality. 
+      Isomap exploits geodesic paths for nonlinear dimensionality reduction.\newline
+      The following picture shows the accuracy versus different number of selected components and neighbors.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{iso-acc.jpg}
+	\caption{ISOMAP Accuracy-Components-Neighbors}
+      \end{figure}
+      \noindent The figure shows how a very small number of components($\sim$ 50) 
+      can achieve an accuracy better than the baseline and ANOVA classifier.\newline
+      What follows is a more detaled analysis of the results over the test set.
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{iso-heat.jpg}
+	\caption{ISOMAP Heatmap}
+      \end{figure}
+      The table report precision and recall for each class.
+      \begin{table}[H]
+      	\centering
+	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
+	  {$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	  $Precision$  & 1 & 0.5023 & 0.6128 & 0.8088 & 0.0571 & 0 & 0.5 \\ \midrule
+	  $Recall$  & 0.2 & 0.5362 & 0.5309 & 0.8494 & 0.1333 & 0 & 0.5 \\ \bottomrule
+	\end{tabular}
+      \end{table}
+      \noindent It is important to point out how the SVM trained after performing the ISOMAP reduction perform worse on the 
+      the test set(accuracy: $\sim$63\%
 
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
