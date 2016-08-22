@@ -34,9 +34,9 @@
   PCA, ISOMAP, forward features selection and ANOVA F-Test approach;
   The goodness of each method is evaluated over Support Vector Machine(soft margin penalty is tuned by 5-Fold cross-validation)
   considering as metrics accuracy, precision, recall and F1 score.
-  Final results shows, in general, how a very small number of features in the can actually capture an high percentage(90 \%)
+  Final results shows, in general, how a very small number of features in the can actually capture an high percentage
   of the variance associated with the data and to results identical or better with respect to the case and high number
-  of features is used. Moreover final results also show how PCA and ISOMAP are quite ineffective on this particular dataset.
+  of features is used. Moreover final results outline how ISOMAP reveals to be quite ineffective on this particular scenario.
 \end{abstract}
 
 \newpage
@@ -269,7 +269,7 @@
     In addition to the two above stated procedure the dataset has been further downsampled till to reduce the number of significant features
     to 1000(which is still quite high!).\newline
     Finally, given the fact that the spectra belong to very different celestial object at very different distance(light years order) from 
-    the observation point, a final step of normalization is applied that is Z-Score and mean centering(making them suitable for a subsequent PCA analysis).
+    the observation point, a final mean centering is applied(making them suitable for a subsequent PCA analysis).
   
   \subsubsection{Visualization}
     In figure 2 are shown some random spectra for different type of objected extracted from the dataset:
@@ -322,7 +322,7 @@
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
   \subsection{Results}
-    \subsubsection{Baseline Classifier}
+    \subsubsection{Baseline Classifier\protect\footnote{Refer to script baseline.m}}
       The first problem in SVM classification is the choice of the correct kernel:\newline
       Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
       \begin{itemize}
@@ -366,7 +366,7 @@
 	\end{tabular}
       \end{table}
     
-    \subsubsection{ANOVA Classifier}
+    \subsubsection{ANOVA Classifier\protect\footnote{Refer to script anova.py}}
       This section describes the first attempt to improve the performance of the baseline classifier by trying to reduce the number of
       features by calculating an univariate f-test over the features.\newline
       To have a rough idea on which may be the most informative features we plot the f-score(the results of the previous analysis) for each 
@@ -401,7 +401,7 @@
 	\end{tabular}
       \end{table}
       
-     \subsubsection{PCA}
+     \subsubsection{PCA\protect\footnote{Refer to script pca.py}}
       This section describes the first attempt to improve the performance of the anova/baseline classifier by trying to use a more 
       sophisticated approach to the problem of dimensionality. 
       Features are not selected but the data are projected along their principal components.\newline
@@ -429,9 +429,37 @@
 	\end{tabular}
       \end{table}
 
-     \subsubsection{Forward Features Selection}
+     \subsubsection{Forward Features Selection\protect\footnote{Refer to script fwfs.py}}
+      This section shows the results given by the approach described in section 3.3.
+      The analysis stops when more than 200 features have been selected or when the algorithm reaches a local optima,
+      ie. the difference between to subsequent scores is less than a given threshold(or tolerance in this case 0.001).\newline
+      The execution of the relevant script selects the following features:\newline\newline
+      \textbf{[963, 793, 759, 238, 867, 866, 875]}\newline\newline
+      It is important to notice two important facts:
+      \begin{itemize}
+       \item The algorithm selects a very small number of features(7) in spite of the previuos techniques where the number of features 
+	is higher
+       \item The algorithm seems to prefer features located in the upper part of the spectrum while the previous ANOVA analysis 
+	seem to prefer low frequency features
+      \end{itemize}
+      
+      As usual we report the result over the test set:
+      \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{fwfs-heat.jpg}
+	\caption{FWFS Heatmap}
+      \end{figure}
+      The following table report precision and recall for each class.
+      \begin{table}[H]
+      	\centering
+	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
+	  {$Class$} & {$1$} & {$2$} & {$3$} & {$4$} & {$5$} & {$6$} & {$7$} \\ \midrule
+	  $Precision$  & 0 & 0.5566 & 0.6015 & 0.9118 & 0.1714 & 0 & 0.5 \\ \midrule
+	  $Recall$  & $NaN$ & 0.5802 & 0.5634 & 0.8350 & 1 & $NaN$ & 1 \\ \bottomrule
+	\end{tabular}
+      \end{table}
      
-     \subsubsection{ISOMAP}
+     \subsubsection{ISOMAP\protect\footnote{Refer to script isomap.py}}
       This section describes a second attempt to improve the performance of the PCA classifier by trying to use a more 
       sophisticated approach to the problem of dimensionality. 
       Isomap exploits geodesic paths for nonlinear dimensionality reduction.\newline
@@ -449,7 +477,7 @@
 	\includegraphics[scale=0.5]{iso-heat.jpg}
 	\caption{ISOMAP Heatmap}
       \end{figure}
-      The table report precision and recall for each class.
+      The following table report precision and recall for each class.
       \begin{table}[H]
       	\centering
 	\begin{tabular}{l|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}} \toprule
@@ -463,12 +491,6 @@
       It is quite complicated understand the reasons behind the this performance degradation, we suppose this is mainly due to 
       the lack of samples used during the analysis indeed others works \cite{sdssiso} outlined that with a much higher number of
       data ISOMAP outperform PCA.
-
-  \subsection{Notes on LibSVM}
-    Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
-    to train a 7-class SVM. LibSVM sources file has been modfied \cite{openmpsvm} in order to permit kernel evaluations in training/testing
-    to be parallelized on 6 threads; this small modifications has lead to a significant improvement in the compuatation performance.\newline
-    \textbf{TODO: Insert example with numbers!}
     
 \newpage
 
@@ -510,6 +532,7 @@
     Bu Yude, Chen Fuqiang, Pan Jingchang,
     \emph{Stellar spectral subclasses classification based on Isomap and SVM},
     New Astronomy, Volume 28, p. 35-43.
+    
 \end{thebibliography}
 
 \end{document}

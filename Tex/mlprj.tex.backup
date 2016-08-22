@@ -322,7 +322,7 @@
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
     the number of point that has been uncorrectly predicted not belonging to class $k$.
   \subsection{Results}
-    \subsubsection{Baseline Classifier}
+    \subsubsection{Baseline Classifier\protect\footnote{Refer to script baseline.m}}
       The first problem in SVM classification is the choice of the correct kernel:\newline
       Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
       \begin{itemize}
@@ -366,7 +366,7 @@
 	\end{tabular}
       \end{table}
     
-    \subsubsection{ANOVA Classifier}
+    \subsubsection{ANOVA Classifier\protect\footnote{Refer to script anova.py}}
       This section describes the first attempt to improve the performance of the baseline classifier by trying to reduce the number of
       features by calculating an univariate f-test over the features.\newline
       To have a rough idea on which may be the most informative features we plot the f-score(the results of the previous analysis) for each 
@@ -401,7 +401,7 @@
 	\end{tabular}
       \end{table}
       
-     \subsubsection{PCA}
+     \subsubsection{PCA\protect\footnote{Refer to script pca.py}}
       This section describes the first attempt to improve the performance of the anova/baseline classifier by trying to use a more 
       sophisticated approach to the problem of dimensionality. 
       Features are not selected but the data are projected along their principal components.\newline
@@ -429,9 +429,23 @@
 	\end{tabular}
       \end{table}
 
-     \subsubsection{Forward Features Selection}
+     \subsubsection{Forward Features Selection\protect\footnote{Refer to script fwfs.py}}
+      This section shows the results given by the approach described in section 3.3.
+      The analysis stops when more than 200 features have been selected or when the algorithm reaches a local optima,
+      ie. the difference between to subsequent scores is less than a given threshold(or tolerance in this case 0.001).\newline
+      The execution of the relevant script selects the following features:\newline\newline
+      \textbf{[963, 793, 759, 238, 867, 866, 875]}\newline\newline
+      It is important to notice two important facts:
+      \begin{itemize}
+       \item The algorithm selects a very small number of features(7) in spite of the previuos techniques where the number of features 
+	is higher
+       \item The algorithm seems to prefer features located in the upper part of the spectrum while the previous ANOVA analysis 
+	seem to prefer low frequency features
+      \end{itemize}
+      
+      As usual we report the result over the test set:
      
-     \subsubsection{ISOMAP}
+     \subsubsection{ISOMAP\protect\footnote{Refer to script isomap.py}}
       This section describes a second attempt to improve the performance of the PCA classifier by trying to use a more 
       sophisticated approach to the problem of dimensionality. 
       Isomap exploits geodesic paths for nonlinear dimensionality reduction.\newline
@@ -459,7 +473,10 @@
 	\end{tabular}
       \end{table}
       \noindent It is important to point out how the SVM trained after performing the ISOMAP reduction perform worse on the 
-      the test set(accuracy: $\sim$63\%
+      the test set(accuracy: $\sim$63\%) with respect to the PCA classifier.\newline
+      It is quite complicated understand the reasons behind the this performance degradation, we suppose this is mainly due to 
+      the lack of samples used during the analysis indeed others works \cite{sdssiso} outlined that with a much higher number of
+      data ISOMAP outperform PCA.
 
   \subsection{Notes on LibSVM}
     Matlab does not include commands that permits to train a multiclass SVM. The external library LibSVM \cite{libsvm} is used in order
@@ -502,6 +519,11 @@
     Chih-Wei Hsu, Chih-Jen Lin,
     \emph{Use OpenMP to parallelize LibSVM on a multicore/shared-memory computer},
     http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html\#f432
+    
+   \bibitem{sdssiso}
+    Bu Yude, Chen Fuqiang, Pan Jingchang,
+    \emph{Stellar spectral subclasses classification based on Isomap and SVM},
+    New Astronomy, Volume 28, p. 35-43.
 \end{thebibliography}
 
 \end{document}

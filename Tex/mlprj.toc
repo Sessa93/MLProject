@@ -15,10 +15,9 @@
 \contentsline {subsubsection}{\numberline {4.1.2}Visualization}{10}
 \contentsline {subsection}{\numberline {4.2}Metrics}{11}
 \contentsline {subsection}{\numberline {4.3}Results}{12}
-\contentsline {subsubsection}{\numberline {4.3.1}Baseline Classifier}{12}
-\contentsline {subsubsection}{\numberline {4.3.2}ANOVA Classifier}{13}
-\contentsline {subsubsection}{\numberline {4.3.3}PCA}{15}
-\contentsline {subsubsection}{\numberline {4.3.4}Forward Features Selection}{17}
-\contentsline {subsubsection}{\numberline {4.3.5}ISOMAP}{17}
-\contentsline {subsection}{\numberline {4.4}Notes on LibSVM}{18}
-\contentsline {section}{\numberline {5}Conclusions}{19}
+\contentsline {subsubsection}{\numberline {4.3.1}Baseline Classifier\footnote {Refer to script baseline.m}}{12}
+\contentsline {subsubsection}{\numberline {4.3.2}ANOVA Classifier\footnote {Refer to script anova.py}}{13}
+\contentsline {subsubsection}{\numberline {4.3.3}PCA\footnote {Refer to script pca.py}}{15}
+\contentsline {subsubsection}{\numberline {4.3.4}Forward Features Selection\footnote {Refer to script fwfs.py}}{17}
+\contentsline {subsubsection}{\numberline {4.3.5}ISOMAP\footnote {Refer to script isomap.py}}{18}
+\contentsline {section}{\numberline {5}Conclusions}{20}

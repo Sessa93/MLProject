@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.25)  18 AUG 2016 17:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.25)  22 AUG 2016 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1121,7 +1121,7 @@ j.toc)
 \tf@lof=\write4
 \openout4 = `mlprj.lof'.
 
- [3] <emission_galaxy.jpg, id=19, 562.1pt x 421.575pt>
+ [3] <emission_galaxy.jpg, id=22, 562.1pt x 421.575pt>
 File: emission_galaxy.jpg Graphic file (type jpg)
 
 <use emission_galaxy.jpg>
@@ -1169,7 +1169,7 @@ Overfull \hbox (0.84143pt too wide) in paragraph at lines 247--248
 -tively ho-mo-ge-neous
  []
 
-<sample_spec.jpg, id=46, 572.1375pt x 451.6875pt>
+<sample_spec.jpg, id=48, 572.1375pt x 451.6875pt>
 File: sample_spec.jpg Graphic file (type jpg)
  <use sample_spec.jpg>
 Package pdftex.def Info: sample_spec.jpg used on input line 280.
@@ -1185,19 +1185,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 283--288
 
  []
 
-<histogram.jpg, id=50, 838.13126pt x 287.0725pt>
+<histogram.jpg, id=52, 838.13126pt x 287.0725pt>
 File: histogram.jpg Graphic file (type jpg)
  <use histogram.jpg>
 Package pdftex.def Info: histogram.jpg used on input line 293.
 (pdftex.def)             Requested size: 335.24657pt x 114.82695pt.
  [10 <./sample_spec.jpg>] [11 <./histogram.jpg>]
-<baseline.jpg, id=57, 572.1375pt x 451.6875pt>
+<baseline.jpg, id=59, 572.1375pt x 451.6875pt>
 File: baseline.jpg Graphic file (type jpg)
  <use baseline.jpg>
 Package pdftex.def Info: baseline.jpg used on input line 349.
 (pdftex.def)             Requested size: 286.06804pt x 225.84319pt.
 
-<conf_matrix_baseline.jpg, id=58, 562.1pt x 421.575pt>
+<conf_matrix_baseline.jpg, id=60, 562.1pt x 421.575pt>
 File: conf_matrix_baseline.jpg Graphic file (type jpg)
 
 <use conf_matrix_baseline.jpg>
@@ -1213,70 +1213,83 @@ Underfull \hbox (badness 10000) in paragraph at lines 358--359
 
  []
 
-<anova_f_score.png, id=62, 578.16pt x 433.62pt>
+<anova_f_score.png, id=64, 578.16pt x 433.62pt>
 File: anova_f_score.png Graphic file (type png)
  <use anova_f_score.png>
 Package pdftex.def Info: anova_f_score.png used on input line 376.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-[13 <./conf_matrix_baseline.jpg>] <anova-acc.jpg, id=68, 562.1pt x 421.575pt>
+[13 <./conf_matrix_baseline.jpg>] <anova-acc.jpg, id=70, 562.1pt x 421.575pt>
 File: anova-acc.jpg Graphic file (type jpg)
 
 <use anova-acc.jpg>
 Package pdftex.def Info: anova-acc.jpg used on input line 384.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
- <anova-heat.jpg, id=69, 552.0625pt x 391.4625pt>
+ <anova-heat.jpg, id=71, 552.0625pt x 391.4625pt>
 File: anova-heat.jpg Graphic file (type jpg)
 
 <use anova-heat.jpg>
 Package pdftex.def Info: anova-heat.jpg used on input line 391.
 (pdftex.def)             Requested size: 276.03056pt x 195.73076pt.
  [14 <./anova_f_score.png> <./anova-acc.jpg>]
-<pca-acc.png, id=74, 578.16pt x 433.62pt>
+<pca-acc.png, id=76, 578.16pt x 433.62pt>
 File: pca-acc.png Graphic file (type png)
  <use pca-acc.png>
 Package pdftex.def Info: pca-acc.png used on input line 411.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
- [15 <./anova-heat.jpg>] <pca-heat.jpg, id=78, 562.1pt x 421.575pt>
+ [15 <./anova-heat.jpg>] <pca-heat.jpg, id=80, 562.1pt x 421.575pt>
 File: pca-heat.jpg Graphic file (type jpg)
  <use pca-heat.jpg>
 Package pdftex.def Info: pca-heat.jpg used on input line 419.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
- [16 <./pca-acc.png> <./pca-heat.jpg>] <iso-acc.jpg, id=83, 562.1pt x 421.575pt
->
-File: iso-acc.jpg Graphic file (type jpg)
+ [16 <./pca-acc.png> <./pca-heat.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 433--439
 
-<use iso-acc.jpg>
-Package pdftex.def Info: iso-acc.jpg used on input line 441.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--439
+
+ []
+
+<fwfs-heat.jpg, id=85, 562.1pt x 421.575pt>
+File: fwfs-heat.jpg Graphic file (type jpg)
+ <use fwfs-heat.jpg>
+Package pdftex.def Info: fwfs-heat.jpg used on input line 449.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
- <iso-heat.jpg, id=84, 552.0625pt x 391.4625pt>
-File: iso-heat.jpg Graphic file (type jpg)
+ [17 <./fwfs-heat.jpg>] <iso-acc.jpg, id=89, 562.1pt x 421.575pt>
+File: iso-acc.jpg Graphic file (type jpg)
+ <use iso-acc.jpg>
+Package pdftex.def Info: iso-acc.jpg used on input line 469.
+(pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
 
-<use iso-heat.jpg>
-Package pdftex.def Info: iso-heat.jpg used on input line 449.
+<iso-heat.jpg, id=90, 552.0625pt x 391.4625pt>
+File: iso-heat.jpg Graphic file (type jpg)
+ <use iso-heat.jpg>
+Package pdftex.def Info: iso-heat.jpg used on input line 477.
 (pdftex.def)             Requested size: 276.03056pt x 195.73076pt.
- [17 <./iso-acc.jpg>] [18 <./iso-heat.jpg>] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 505--508
+ [18 <./iso-acc.jpg>] [19 <./iso-heat.jpg>] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 527--530
 []\OT1/cmr/m/n/10 Chih-Wei Hsu, Chih-Jen Lin, \OT1/cmr/m/it/10 Use OpenMP to pa
 r-al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--508
+Underfull \hbox (badness 10000) in paragraph at lines 527--530
 \OT1/cmr/m/it/10 lelize Lib-SVM on a multicore/shared-memory com-puter\OT1/cmr/
 m/n/10 ,
  []
 
-[20] (./mlprj.aux) )
+[21] (./mlprj.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14095 strings out of 493013
- 280255 string characters out of 6133328
- 300823 words of memory out of 5000000
- 17480 multiletter control sequences out of 15000+600000
+ 14100 strings out of 493013
+ 280339 string characters out of 6133328
+ 302823 words of memory out of 5000000
+ 17484 multiletter control sequences out of 15000+600000
  18006 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,42p,10356b,7112s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1292,16 +1305,18 @@ mi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
 7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
 pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
-al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
-l/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on mlprj.pdf (20 pages, 547802 bytes).
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/
+texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on mlprj.pdf (21 pages, 597114 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
+ 166 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
