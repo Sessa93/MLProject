@@ -12,7 +12,6 @@
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
-
 \title{SDSS Celestial Objects Classification}
 \author{Andrea Sessa \\ \vspace{1cm} \small{Mat. 850082}}
 \date{}
@@ -20,6 +19,11 @@
 \begin{document}
 
 \maketitle
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.5]{polimi_logo.jpg}
+\end{figure}
 
 \begin{abstract}
   The project aims to study the problem of dimensionality reduction in the field of astronomy.
@@ -318,13 +322,13 @@
     correctly predicted to class $k$, and $fp_k$ is the number of false positive, ie the number of samples that does not belong
     to class $k$ but have been predicted to class $k$.\newline
     The precision express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus
-    the number of point that has been uncorrectly predicted belonging to class $k$.\newline
+    the number of point that has been incorrectly predicted belonging to class $k$.\newline
     The recall express the number of correctly predicted samples for a given class $k$ with respect to the number of true positives plus 
-    the number of point that has been uncorrectly predicted not belonging to class $k$.
+    the number of point that has been incorrectly predicted not belonging to class $k$.
   \subsection{Results}
     \subsubsection{Baseline Classifier\protect\footnote{Refer to script baseline.m}}
       The first problem in SVM classification is the choice of the correct kernel:\newline
-      Three different kernels have been evaluated, as a rough estimation of the performance we consider the classsification accuracy:
+      Three different kernels have been evaluated, as a rough estimation of the performance we consider the classification accuracy:
       \begin{itemize}
        \item Linear Kernel, Accuracy on the test set: $\sim$ 67\%
        \item Polynomial Kernel(3\textdegree \hspace{.1mm} polynom), Accuracy on the test set: $\sim$ 69\% 
@@ -338,7 +342,7 @@
        k(x,y) = (\gamma x^Ty)^d
       \end{equation}
       We perform a 5-fold cross-validation in order to determine the best $\gamma$, C and degree(d).\newline
-      The procedure has individuated the following hyperparameter:
+      The procedure has individuated the following hyperparameters:
       \begin{itemize}
        \item degree(d) = 3
        \item $\gamma = 2^{-20} = 0,000000954$
@@ -377,7 +381,7 @@
 	\caption{ANOVA F-Score}
       \end{figure}
       
-      \noindent The graph clearly shows how the first 160 $\sim$ 180 features have a higher inoformative level with respect to the others.\newline
+      \noindent The graph clearly shows how the first 160 $\sim$ 180 features have a higher informative level with respect to the others.\newline
       We try different percentiles of features and using 5-fold cross validation we have calculated the accuracy; the results are shown in the following picture.
       \begin{figure}[H]
 	\centering
@@ -385,7 +389,7 @@
 	\caption{ANOVA Accuracy-Percentile}
       \end{figure}
       \noindent The results clearly shows, as expected, how a smaller number of features($\sim$ 20\%) produce the maximum accuracy. \newline
-      What follows is a more detaled analysis of the results over the test set.
+      What follows is a more detailed analysis of the results over the test set.
       \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{anova-heat.jpg}
@@ -413,7 +417,7 @@
       \end{figure}
       \noindent The figure shows how a very small number of components($\sim$ 50) 
       can achieve an accuracy better than the baseline and ANOVA classifier.\newline
-      What follows is a more detaled analysis of the results over the test set.
+      What follows is a more detailed analysis of the results over the test set.
       \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{pca-heat.jpg}
@@ -437,7 +441,7 @@
       \textbf{[963, 793, 759, 238, 867, 866, 875]}\newline\newline
       It is important to notice two important facts:
       \begin{itemize}
-       \item The algorithm selects a very small number of features(7) in spite of the previuos techniques where the number of features 
+       \item The algorithm selects a very small number of features(7) in spite of the previous techniques where the number of features 
 	is higher
        \item The algorithm seems to prefer features located in the upper part of the spectrum while the previous ANOVA analysis 
 	seem to prefer low frequency features
@@ -471,7 +475,7 @@
       \end{figure}
       \noindent The figure shows how a very small number of components($\sim$ 50) 
       can achieve an accuracy better than the baseline and ANOVA classifier.\newline
-      What follows is a more detaled analysis of the results over the test set.
+      What follows is a more detailed analysis of the results over the test set.
       \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{iso-heat.jpg}
@@ -495,7 +499,17 @@
 \newpage
 
 \section{Conclusions}
-
+  The results reported in the previous section validate the idea on how a high number of features can lead to bad classification
+  performance. Various techniques has been tried, all of them have shown an improvement with respect to the baseline classifier.
+  In particular the ANOVA classifier has been able to achieve good results by selecting a relatively small number of features 
+  located in the low frequency area of the spectrum; the FWFS classifier also has achieved a better result than the baseline 
+  by selecting an very low($\sim$ 7) number of features(in this case located in the high frequency area of the spectrum).
+  The higher performance(in terms of accuracy) has been achieved through the PCA classifier, which has reprojected the original
+  data over a small number of principal components($\sim$20).\newline
+  Very peculiar is the behavior of the ISOMAP classifier which, in theory, should outperform the PCA classifier(ISOMAP is a sort of 
+  non-linear extension of PCA), in this particular scenario we have observed how the PCA achieve the highest performance. We hypothesize
+  this due to the lack of samples, whose number has been furtherer reduced during the re-projection phase to obtain manageable computation times.  
+  
 \newpage
 
 \begin{thebibliography}{9}
